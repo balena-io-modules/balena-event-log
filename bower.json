@@ -1,0 +1,20 @@
+{
+  "name": "resin-event-log",
+  "main": "bin/resin-event-log.js",
+  "version": "0.0.3",
+  "authors": [
+    "Iskren Slavov <iskren.s@resin.io>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.*.*",
+    "node-uuid": "~1.*.*"
+  }
+}
