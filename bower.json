@@ -3,7 +3,7 @@
   "main": "bin/resin-event-log.js",
   "version": "0.0.3",
   "authors": [
-    "Iskren Slavov <iskren.s@resin.io>"
+    "Iskren Slavov <iskren@resin.io>"
   ],
   "license": "MIT",
   "ignore": [
