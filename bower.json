@@ -1,7 +1,7 @@
 {
   "name": "resin-event-log",
   "main": "bin/resin-event-log.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     "Iskren Slavov <iskren@resin.io>"
   ],
@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "lodash": "~3.*.*",
-    "node-uuid": "~1.*.*"
+    "node-uuid": "~1.*.*",
+    "resin-mixpanel-client": "~0.0.2"
   }
 }

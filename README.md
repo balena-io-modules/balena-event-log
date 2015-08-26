@@ -24,15 +24,12 @@ $ gulp watch
 
 ```coffeescript
 EventLog = require('resin-event-log')
-PinejsClient = require('pinejs-client')
 
-pinejsClientInstance = new PinejsClient(...)
-
-eventLogger = EventLog pinejsClientInstance, 'Subsystem - UI, CLI, etc.', {
+eventLogger = EventLog MIXPANEL_TOKEN, 'Subsystem - UI, CLI, etc.', {
     # Hooks:
-    beforeCreate: ->
-        @start('User ID', 'Interaction ID') # If no Interaction ID provided, it's auto-generated
-    afterCreate: (type) ->
+    beforeCreate: (type, jsonData, applicationId, deviceId, callback) ->
+        @start('User ID', callback)
+    afterCreate: (type, jsonData, applicationId, deviceId) ->
         if type is 'User Logout'
             @end()
 }
@@ -51,10 +48,6 @@ eventLoger.user.login()
 ## Available hooks:
 
 ```coffeescript
-beforeStart = (userId, interactionUuid) ->
-afterStart = (userId, interactionUuid) ->
-beforeEnd = ->
-afterEnd = ->
-beforeCreate = (type, jsonData, applicationId, deviceId) ->
-afterCreate = (type, jsonData, applicationId, deviceId) ->
+beforeCreate = (type, jsonData, applicationId, deviceId, callback) -> callback()
+afterCreate = (type, jsonData, applicationId, deviceId) -> #
 ```

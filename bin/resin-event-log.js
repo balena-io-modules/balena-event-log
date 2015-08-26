@@ -1,11 +1,11 @@
 (function() {
   (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
-      return define(['lodash', '../bower_components/node-uuid/uuid'], factory);
+      return define(['../bower_components/resin-mixpanel-client/bin/resin-mixpanel-client', 'lodash'], factory);
     } else if (typeof exports === 'object') {
-      return module.exports = factory(require('lodash'), require('node-uuid'));
+      return module.exports = factory(require('./resin-mixpanel-client'), require('lodash'));
     }
-  })(this, function(_, uuid) {
+  })(this, function(ResinMixpanelClient, _) {
     var EVENTS, HOOKS;
     EVENTS = {
       user: ['login', 'logout', 'signup', 'passwordCreate', 'passwordEdit', 'emailEdit'],
@@ -16,53 +16,61 @@
       deviceEnvironmentVariable: ['create', 'edit', 'delete']
     };
     HOOKS = {
-      beforeStart: function(userId, interactionUuid) {},
-      afterStart: function(userId, interactionUuid) {},
-      beforeEnd: function() {},
-      afterEnd: function() {},
-      beforeCreate: function(type, jsonData, applicationId, deviceId) {},
+      beforeCreate: function(type, jsonData, applicationId, deviceId, callback) {
+        return callback();
+      },
       afterCreate: function(type, jsonData, applicationId, deviceId) {}
     };
-    return function(PinejsClient, subsystem, hooks) {
-      var exported;
-      if (!subsystem) {
-        throw Error('subsystem is required to start events interaction.');
+    return function(mixpanelToken, subsystem, hooks) {
+      var exported, getMixpanelUser, mixpanel;
+      if (!mixpanelToken || !subsystem) {
+        throw Error('mixpanelToken and subsystem are required to start events interaction.');
       }
       hooks = _.merge(HOOKS, hooks);
+      mixpanel = ResinMixpanelClient(mixpanelToken);
+      getMixpanelUser = function(userData) {
+        var mixpanelUser;
+        mixpanelUser = _.extend({
+          '$email': userData.email,
+          '$name': userData.username
+        }, userData);
+        return _.pick(mixpanelUser, ['$email', '$name', '$created', 'hasPasswordSet', 'iat', 'id', 'permissions', 'public_key', 'username']);
+      };
       exported = {
         subsystem: subsystem,
-        start: function(userId, interactionUuid) {
-          hooks.beforeStart.apply(this, arguments);
-          if (!userId) {
-            throw Error('userId is required to start events interaction.');
+        start: function(user, callback) {
+          var login, mixpanelUser;
+          if (!user) {
+            throw Error('user is required to start events interaction.');
           }
-          this.userId = userId;
-          this.interactionUuid = interactionUuid || uuid();
-          return hooks.afterStart.call(this, this.userId, this.interactionUuid);
+          this.userId = user.id;
+          mixpanelUser = getMixpanelUser(user);
+          login = function() {
+            return mixpanel.login(user.username, function() {
+              return mixpanel.setUserOnce(mixpanelUser, callback);
+            });
+          };
+          if (mixpanelUser.$created) {
+            return mixpanel.signup(user.username, function() {
+              return login();
+            });
+          }
+          return login();
         },
-        end: function() {
-          hooks.beforeEnd.apply(this);
+        end: function(callback) {
           this.userId = null;
-          this.interactionUuid = null;
-          return hooks.afterEnd.apply(this);
+          return mixpanel.logout(callback);
         },
         create: function(type, jsonData, applicationId, deviceId) {
-          var args;
-          args = arguments;
-          hooks.beforeCreate.apply(this, args);
-          return PinejsClient.post({
-            resource: 'event',
-            body: {
-              user: this.userId,
-              interaction_uuid: this.interactionUuid,
-              application_id: applicationId,
-              device_id: deviceId,
-              type: "[" + this.subsystem + "] " + type,
-              json_data: jsonData
-            }
-          }).then((function(_this) {
+          return hooks.beforeCreate.call(this, type, jsonData, applicationId, deviceId, (function(_this) {
             return function() {
-              return hooks.afterCreate.apply(_this, args);
+              return mixpanel.track("[" + _this.subsystem + "] " + type, {
+                applicationId: applicationId,
+                deviceId: deviceId,
+                jsonData: jsonData
+              }, function() {
+                return hooks.afterCreate.call(_this, type, jsonData, applicationId, deviceId);
+              });
             };
           })(this));
         }

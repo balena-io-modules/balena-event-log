@@ -1,13 +1,19 @@
 ((root, factory) ->
 	if typeof define is 'function' and define.amd
 		# AMD. Register as an anonymous module.
-		define ['lodash', '../bower_components/node-uuid/uuid'], factory
+		define [
+			'../bower_components/resin-mixpanel-client/bin/resin-mixpanel-client'
+			'lodash'
+		], factory
 	else if typeof exports is 'object'
 		# Node. Does not work with strict CommonJS, but
 		# only CommonJS-like enviroments that support module.exports,
 		# like Node.
-		module.exports = factory(require('lodash'), require('node-uuid'))
-) this, (_, uuid) ->
+		module.exports = factory(
+			require('./resin-mixpanel-client')
+			require('lodash')
+		)
+) this, (ResinMixpanelClient, _) ->
 	EVENTS =
 		user: [
 			'login'
@@ -46,52 +52,64 @@
 		]
 
 	HOOKS =
-		beforeStart: (userId, interactionUuid) -> #
-		afterStart: (userId, interactionUuid) -> #
-		beforeEnd: -> #
-		afterEnd: -> #
-		beforeCreate: (type, jsonData, applicationId, deviceId) -> #
+		beforeCreate: (type, jsonData, applicationId, deviceId, callback) -> callback()
 		afterCreate: (type, jsonData, applicationId, deviceId) -> #
 
-	return (PinejsClient, subsystem, hooks) ->
-		if not subsystem
-			throw Error('subsystem is required to start events interaction.')
+	return (mixpanelToken, subsystem, hooks) ->
+		if not mixpanelToken or not subsystem
+			throw Error('mixpanelToken and subsystem are required to start events interaction.')
 
 		hooks = _.merge(HOOKS, hooks)
+		mixpanel = ResinMixpanelClient(mixpanelToken)
+
+		getMixpanelUser = (userData) ->
+			mixpanelUser = _.extend
+				'$email': userData.email
+				'$name': userData.username
+			, userData
+
+			return _.pick mixpanelUser, [
+				'$email'
+				'$name'
+				'$created'
+				'hasPasswordSet'
+				'iat'
+				'id'
+				'permissions'
+				'public_key'
+				'username'
+			]
 
 		exported =
 			subsystem: subsystem
 
-			start: (userId, interactionUuid) ->
-				hooks.beforeStart.apply(this, arguments)
-				if not userId
-					throw Error('userId is required to start events interaction.')
+			start: (user, callback) ->
+				if not user
+					throw Error('user is required to start events interaction.')
 
-				@userId = userId
-				@interactionUuid = interactionUuid or uuid()
-				hooks.afterStart.call(this, @userId, @interactionUuid)
+				@userId = user.id
+				mixpanelUser = getMixpanelUser(user)
 
-			end: ->
-				hooks.beforeEnd.apply(this)
+				login = ->
+					mixpanel.login user.username, ->
+						mixpanel.setUserOnce(mixpanelUser, callback)
+				if (mixpanelUser.$created)
+					return mixpanel.signup user.username, ->
+						login()
+				login()
+
+			end: (callback) ->
 				@userId = null
-				@interactionUuid = null
-				hooks.afterEnd.apply(this)
+				mixpanel.logout(callback)
 
 			create: (type, jsonData, applicationId, deviceId) ->
-				args = arguments
-
-				hooks.beforeCreate.apply(this, args)
-				PinejsClient.post
-					resource: 'event'
-					body:
-						user: @userId
-						interaction_uuid: @interactionUuid
-						application_id: applicationId
-						device_id: deviceId
-						type: "[#{@subsystem}] #{type}"
-						json_data: jsonData
-				.then =>
-					hooks.afterCreate.apply(this, args)
+				hooks.beforeCreate.call this, type, jsonData, applicationId, deviceId, =>
+					mixpanel.track "[#{@subsystem}] #{type}", {
+						applicationId
+						deviceId
+						jsonData
+					}, =>
+						hooks.afterCreate.call(this, type, jsonData, applicationId, deviceId)
 
 
 		_.forEach EVENTS, (events, base) ->

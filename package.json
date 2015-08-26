@@ -1,11 +1,11 @@
 {
   "name": "resin-event-log",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "bin/resin-event-log.js",
   "dependencies": {
     "lodash": "^3.*.*",
-    "node-uuid": "^1.*.*"
+    "resin-mixpanel-client": "^0.0.2"
   },
   "devDependencies": {
     "coffee-script": "^1.9.3",
