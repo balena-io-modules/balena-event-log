@@ -3,7 +3,7 @@
     if (typeof define === 'function' && define.amd) {
       return define(['../bower_components/resin-mixpanel-client/bin/resin-mixpanel-client', 'lodash'], factory);
     } else if (typeof exports === 'object') {
-      return module.exports = factory(require('./resin-mixpanel-client'), require('lodash'));
+      return module.exports = factory(require('resin-mixpanel-client'), require('lodash'));
     }
   })(this, function(ResinMixpanelClient, _) {
     var EVENTS, HOOKS;

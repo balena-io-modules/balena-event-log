@@ -10,7 +10,7 @@
 		# only CommonJS-like enviroments that support module.exports,
 		# like Node.
 		module.exports = factory(
-			require('./resin-mixpanel-client')
+			require('resin-mixpanel-client')
 			require('lodash')
 		)
 ) this, (ResinMixpanelClient, _) ->
