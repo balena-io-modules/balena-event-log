@@ -11,12 +11,15 @@
     "coffee-script": "^1.9.3",
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1",
-    "gulp-coffeelint": "^0.5.0",
     "gulp-util": "^3.0.6",
+    "resin-lint": "^1.4.0",
     "run-sequence": "^1.1.1"
   },
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "lint": "resin-lint src gulpfile.coffee",
+    "test": "npm run lint",
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
