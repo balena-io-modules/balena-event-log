@@ -14,8 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "lodash": "~3.*.*",
-    "node-uuid": "~1.*.*",
+    "lodash": "^4.0.0",
+    "node-uuid": "^1.0.0",
     "resin-mixpanel-client": "0.0.3"
   }
 }

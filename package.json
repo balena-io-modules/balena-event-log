@@ -1,10 +1,10 @@
 {
   "name": "resin-event-log",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "",
   "main": "bin/resin-event-log.js",
   "dependencies": {
-    "lodash": "^3.*.*",
+    "lodash": "^4.0.0",
     "resin-mixpanel-client": "0.0.3"
   },
   "devDependencies": {
@@ -14,6 +14,9 @@
     "gulp-coffeelint": "^0.5.0",
     "gulp-util": "^3.0.6",
     "run-sequence": "^1.1.1"
+  },
+  "scripts": {
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",

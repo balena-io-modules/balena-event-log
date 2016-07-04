@@ -59,11 +59,11 @@
 		if not mixpanelToken or not subsystem
 			throw Error('mixpanelToken and subsystem are required to start events interaction.')
 
-		hooks = _.merge(HOOKS, hooks)
+		hooks = _.defaults(hooks, HOOKS)
 		mixpanel = ResinMixpanelClient(mixpanelToken)
 
 		getMixpanelUser = (userData) ->
-			mixpanelUser = _.extend
+			mixpanelUser = _.assign
 				'$email': userData.email
 				'$name': userData.username
 			, userData
