@@ -1,7 +1,7 @@
 {
   "name": "resin-event-log",
   "main": "bin/resin-event-log.js",
-  "version": "0.0.6",
+  "version": "0.1.1",
   "authors": [
     "Iskren Slavov <iskren@resin.io>"
   ],
