@@ -26,11 +26,11 @@
       if (!mixpanelToken || !subsystem) {
         throw Error('mixpanelToken and subsystem are required to start events interaction.');
       }
-      hooks = _.merge(HOOKS, hooks);
+      hooks = _.defaults(hooks, HOOKS);
       mixpanel = ResinMixpanelClient(mixpanelToken);
       getMixpanelUser = function(userData) {
         var mixpanelUser;
-        mixpanelUser = _.extend({
+        mixpanelUser = _.assign({
           '$email': userData.email,
           '$name': userData.username
         }, userData);
