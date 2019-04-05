@@ -30,9 +30,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:resin-io-modules/resin-analytics.git"
+    "url": "git@github.com:balena-io-modules/resin-event-log.git"
   },
   "author": "Iskren Slavov <iskren@resin.io>",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/resin-io-modules/resin-analytics"
+  "homepage": "https://github.com/balena-io-modules/resin-event-log"
 }
