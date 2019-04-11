@@ -828,4 +828,73 @@ describe('ResinEventLog', function () {
 			})
 		})
 	})
+
+	describe('All platforms', function () {
+		it('Trigger getDistinctId in browser & fail in node', function (done) {
+			var eventLog = ResinEventLog({
+				mixpanelToken: MIXPANEL_TOKEN,
+				gaId: GA_ID,
+				gaSite: GA_SITE,
+				gosquaredId: GOSQUARED_ID,
+				gosquaredApiKey: GOSQUARED_API_KEY,
+				prefix: SYSTEM,
+				debug: EXTRA_DEBUG,
+			})
+
+			if(IS_BROWSER) {
+				eventLog.getDistinctId()
+				.then(function(platformIds) {
+					expect(platformIds).to.have.lengthOf(3);
+					// GA
+					expect(platformIds[0]).to.have.property('ga');
+					expect(platformIds[0]['ga']).to.be.null;
+					// Mixpanel
+					expect(platformIds[1]).to.have.property('mixpanel');
+					expect(platformIds[1]['mixpanel']).to.be.a('string');
+					// GS
+					expect(platformIds[2]).to.have.property('gs');
+					expect(platformIds[2]['gs']).to.be.null;
+
+					done()
+				})
+			}
+			else {
+				eventLog.getDistinctId()
+				.catch(function(err) {
+					expect(err.message).to.equal('(Resin Mixpanel Client) function getDistinctId is only available for the browser')
+					done()
+				})
+			}
+		})
+
+		it('Trigger identify in browser & fail in node', function (done) {
+			var eventLog = ResinEventLog({
+				mixpanelToken: MIXPANEL_TOKEN,
+				gaId: GA_ID,
+				gaSite: GA_SITE,
+				gosquaredId: GOSQUARED_ID,
+				gosquaredApiKey: GOSQUARED_API_KEY,
+				prefix: SYSTEM,
+				debug: EXTRA_DEBUG,
+			})
+
+			if(IS_BROWSER) {
+				eventLog.identify({
+					mixpanel: 'dummy_id'
+				})
+				.then(function() {
+					done()
+				})
+			}
+			else {
+				eventLog.identify({
+					mixpanel: 'dummy_id'
+				})
+				.catch(function(err) {
+					expect(err.message).to.equal('(Resin Mixpanel Client) function identify is only available for the browser')
+					done()
+				})
+			}
+		})
+	})
 })

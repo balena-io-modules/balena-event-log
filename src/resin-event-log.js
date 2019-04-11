@@ -170,6 +170,13 @@ module.exports = function(options) {
 				}).then(function () {
 					return runAfterHook()
 				}).asCallback(callback)
+		},
+		// These functions are only available for use in the browser
+		getDistinctId: function(callback) {
+			return runForAllAdaptors('getDistinctId', [], callback)
+		},
+		identify: function(ids, callback) {
+			return runForAllAdaptors('identify', [ids], callback)
 		}
 	}
 

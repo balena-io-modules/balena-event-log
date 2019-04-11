@@ -28,6 +28,12 @@ module.exports = function (options) {
 		},
 		track: function (prefix, type, data) {
 			return gaClient.track(site, type, prefix, data)
+		},
+		getDistinctId: function() {
+			return {ga: null}
+		},
+		identify: function(ids) {
+			return null
 		}
 	}
 }

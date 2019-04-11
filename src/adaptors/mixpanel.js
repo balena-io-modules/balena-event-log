@@ -69,6 +69,18 @@ module.exports = function (options) {
 		},
 		track: function (prefix, type, data) {
 			return mixpanel.track("[" + prefix + "] " + type, data)
+		},
+		getDistinctId: function() {
+			return {mixpanel: mixpanel.getDistinctId()}
+		},
+		identify: function(ids) {
+			var mixpanelId = ids['mixpanel']
+
+			if (!mixpanelId){
+				return null
+			}
+
+			return mixpanel.identify(mixpanelId)
 		}
 	}
 }
