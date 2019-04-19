@@ -11,20 +11,20 @@
     "resin-universal-gosquared": "^0.2.0"
   },
   "devDependencies": {
+    "balena-config-karma": "^2.3.1",
     "base-64": "^0.1.0",
     "browserify": "^14.0.0",
     "chai": "^3.5.0",
-    "karma": "^1.3.0",
-    "mocha": "^3.2.0",
+    "karma": "^1.7.0",
+    "mocha": "^3.5.0",
     "querystring": "^0.2.0",
-    "resin-config-karma": "^1.0.4",
     "resin-lint": "^1.4.0",
     "resin-universal-http-mock": "^1.0.1"
   },
   "scripts": {
     "bundle": "browserify src/resin-event-log.js -o build/bundle.js",
     "lint": "resin-lint src",
-    "test-node": "mocha",
+    "test-node": "mocha \"./tests/**/*.js\"",
     "test-browser": "karma start",
     "test": "npm run test-node && npm run test-browser"
   },

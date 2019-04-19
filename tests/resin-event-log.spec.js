@@ -120,7 +120,7 @@ function createGaMock(options, times) {
 
 	var mocks = _.range(times).reduce(function (acc) {
 		acc.push(mock.create(options))
-		browserOpts = _.clone(options)
+		var browserOpts = _.clone(options)
 		browserOpts.endpoint = '/r' + options.endpoint
 		acc.push(mock.create(browserOpts))
 		return acc
