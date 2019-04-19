@@ -36,6 +36,12 @@ module.exports = function (options) {
 		},
 		track: function (prefix, type, data) {
 			return gsClient.track(prefix, type, data)
+		},
+		getDistinctId: function() {
+			return {gs: null}
+		},
+		identify: function(ids) {
+			return null
 		}
 	}
 }
