@@ -13,6 +13,7 @@ var EVENTS = {
 		'create',
 		'open',
 		'osDownload',
+		'osConfigDownload',
 		'publicUrlEnable',
 		'publicUrlDisable',
 		'restart',
