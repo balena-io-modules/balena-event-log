@@ -23,7 +23,8 @@ var EVENTS = {
 		'reboot',
 		'shutdown',
 		'applicationTypeChange',
-		'delete'
+		'delete',
+		'pinToRelease'
 	],
 	applicationTag: [ 'set', 'create', 'edit', 'delete' ],
 	applicationMembers: [ 'create', 'edit', 'delete' ],
@@ -54,6 +55,7 @@ var EVENTS = {
 		'shutdown',
 		'delete',
 		'deactivate',
+		'pinToRelease'
 	],
 	deviceConfigVariable: [ 'create', 'edit', 'delete' ],
 	deviceEnvironmentVariable: [ 'create', 'edit', 'delete' ],
