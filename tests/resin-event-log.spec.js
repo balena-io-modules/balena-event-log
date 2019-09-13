@@ -20,7 +20,7 @@ var ResinEventLog = require('..')
 
 var MIXPANEL_TOKEN = 'MIXPANEL_TOKEN'
 var SYSTEM = 'TEST'
-var MIXPANEL_HOST = 'http://api.mixpanel.com'
+var MIXPANEL_HOST = 'https://api.mixpanel.com'
 var GA_ID = 'UA-123456-0'
 var GA_SITE = 'resintest.io'
 var GOSQUARED_ID = 'GSN-575655-Q'
