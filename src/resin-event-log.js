@@ -66,6 +66,13 @@ var EVENTS = {
 		'deactivate',
 		'pinToRelease'
 	],
+	release: [
+		'openAddRelease',
+		'copyInstructions',
+		'clickInstallLink',
+		'clickGettingStarted',
+		'deployFromUrl',
+	],
 	deviceConfigVariable: [ 'create', 'edit', 'delete' ],
 	deviceEnvironmentVariable: [ 'create', 'edit', 'delete' ],
 	deviceServiceVariable: [ 'create', 'edit', 'delete' ],
