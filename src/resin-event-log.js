@@ -67,10 +67,10 @@ var EVENTS = {
 		'pinToRelease'
 	],
 	release: [
-		'openAddRelease',
-		'copyInstructions',
-		'clickInstallLink',
-		'clickGettingStarted',
+		'addReleaseOpen',
+		'instructionsCopy',
+		'installLinkClick',
+		'gettingStartedClick',
 		'deployFromUrl',
 	],
 	deviceConfigVariable: [ 'create', 'edit', 'delete' ],
