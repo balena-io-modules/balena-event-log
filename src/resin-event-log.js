@@ -64,7 +64,13 @@ var EVENTS = {
 		'shutdown',
 		'delete',
 		'deactivate',
-		'pinToRelease'
+		'pinToRelease',
+		'diagnosticsDownload',
+		'diagnosticsOpen',
+		'diagnosticsRun',
+		'healthChecksOpen',
+		'healthChecksRun',
+		'supervisorStateOpen'
 	],
 	release: [
 		'addReleaseOpen',
