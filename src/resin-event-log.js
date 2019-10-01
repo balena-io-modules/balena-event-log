@@ -134,7 +134,7 @@ module.exports = function(options) {
 	var eventLog = {
 		userId: null,
 		prefix: prefix,
-		start: function(user, callback) {
+		start: function(user, deviceIds, callback) {
 			if (user) {
 				if (!user.id || !user.username) {
 					return Promise.reject(
@@ -144,7 +144,7 @@ module.exports = function(options) {
 				this.userId = user.id
 			}
 
-			return runForAllAdaptors('login', [ user ], callback)
+			return runForAllAdaptors('login', [ user, deviceIds ], callback)
 		},
 		end: function(callback) {
 			if (!this.userId) {
