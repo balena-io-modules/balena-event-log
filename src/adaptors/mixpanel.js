@@ -48,12 +48,12 @@ module.exports = function (options) {
 	var mixpanel = ResinMixpanelClient(token, mixpanelOptions)
 
 	return {
-		login: function(user) {
+		login: function(user, deviceIds) {
 			if (!user) return
 			var methodName = user.$created ? 'signup' : 'login'
 			var mixpanelUser = getMixpanelUser(user)
 
-			return mixpanel[methodName](user.username)
+			return mixpanel[methodName](user.username, deviceIds)
 				.then(function() {
 					// Calling this also ensures that the auto-tracked properties
 					// ($os, $browser, $browser_version, $initial_referrer, $initial_referring_domain)

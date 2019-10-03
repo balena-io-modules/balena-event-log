@@ -6,7 +6,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "lodash": "^4.0.0",
-    "resin-mixpanel-client": "^2.6.0",
+    "resin-mixpanel-client": "^2.7.0",
     "resin-universal-ga": "^1.2.2",
     "resin-universal-gosquared": "^0.2.0"
   },
