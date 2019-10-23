@@ -85,6 +85,7 @@ var EVENTS = {
 	deviceTag: [ 'set', 'create', 'edit', 'delete' ],
 	releaseTag: [ 'set', 'create', 'edit', 'delete' ],
 	billing: [ 'paymentInfoUpdate', 'planChange', 'invoiceDownload' ],
+	onboarding: [ 'stepClick', 'whatNextItemClick'],
 	page: [ 'visit' ],
 	navigation: ['click']
 }
