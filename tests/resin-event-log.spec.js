@@ -21,6 +21,7 @@ var ResinEventLog = require('..')
 var MIXPANEL_TOKEN = 'MIXPANEL_TOKEN'
 var SYSTEM = 'TEST'
 var MIXPANEL_HOST = 'https://api.mixpanel.com'
+var MIXPANEL_BROWSER_HOST = 'https://api-js.mixpanel.com'
 var GA_ID = 'UA-123456-0'
 var GA_SITE = 'resintest.io'
 var GOSQUARED_ID = 'GSN-575655-Q'
@@ -72,11 +73,13 @@ function validateMixpanelQuery(event, user) {
 function createMixpanelMock(options, times) {
 	times = times || 1
 	_.defaults(options, {
-		host: MIXPANEL_HOST,
-		method: 'GET',
+		// The mixpanel lib loaded in the browser uses a different endpoint and uses POST for most of the methods.
+		host: IS_BROWSER ? MIXPANEL_BROWSER_HOST: MIXPANEL_HOST,
+		method: IS_BROWSER ? 'POST' : 'GET',
 		filterQuery: validateMixpanelQuery(options.event, options.user),
 		response: '1'
 	})
+
 	delete options.event
 	delete options.user
 
@@ -183,6 +186,7 @@ describe('ResinEventLog', function () {
 			}, 3)
 
 			createMixpanelMock({
+				method: "GET",
 				endpoint: '/decide',
 				filterQuery: function() { return true },
 				response: JSON.stringify({"notifications":[],"config":{"enable_collect_everything":false}})
@@ -200,6 +204,7 @@ describe('ResinEventLog', function () {
 
 		it('should make basic request', function (done) {
 			var mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
 				endpoint: '/track'
 			})
 
@@ -225,6 +230,7 @@ describe('ResinEventLog', function () {
 
 		it('should track event with user login', function (done) {
 			var mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
 				endpoint: '/track',
 				user: FAKE_USER,
 				event: FAKE_EVENT
@@ -252,6 +258,7 @@ describe('ResinEventLog', function () {
 
 		it('should have semantic methods like device.rename', function (done) {
 			var mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
 				endpoint: '/track',
 				user: FAKE_USER,
 				event: 'Device Rename'
@@ -280,6 +287,7 @@ describe('ResinEventLog', function () {
 		it('should track event with anon user', function (done) {
 
 			var mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
 				endpoint: '/track',
 				event: FAKE_EVENT,
 				user: (function () {
@@ -315,6 +323,7 @@ describe('ResinEventLog', function () {
 
 		it('should track event with anonLogin and allow login later', function (done) {
 			var mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
 				endpoint: '/track',
 				event: FAKE_EVENT,
 				user: (function () {
@@ -352,6 +361,7 @@ describe('ResinEventLog', function () {
 				// TODO: not sure why but only works if you clear all pending mocks
 				mock.reset()
 				mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
 					endpoint: '/track',
 					user: FAKE_USER,
 					event: FAKE_EVENT
@@ -396,6 +406,7 @@ describe('ResinEventLog', function () {
 			}, 3)
 
 			createMixpanelMock({
+				method: "GET",
 				endpoint: '/decide',
 				filterQuery: function() { return true },
 				response: JSON.stringify({"notifications":[],"config":{"enable_collect_everything":false}})
@@ -407,11 +418,14 @@ describe('ResinEventLog', function () {
 		})
 
 		it('should create alias when $created property is passed', function (done) {
-			var aliasMock = createMixpanelMock({
+			createMixpanelMock({
 				endpoint: '/track',
 				event: '$create_alias'
 			})
-			var mockedRequest = createMixpanelMock({ endpoint: '/track' })
+			var mockedRequest = createMixpanelMock({ 
+				filterQuery: function() { return true },
+				endpoint: '/track'
+			})
 
 			eventLog = ResinEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
@@ -424,7 +438,6 @@ describe('ResinEventLog', function () {
 					expect(!err).to.be.ok
 					expect(type).to.be.equal('x')
 					expect(mockedRequest.isDone()).to.be.ok
-					expect(aliasMock.isDone()).to.be.ok
 					done()
 				}
 			})
@@ -439,7 +452,10 @@ describe('ResinEventLog', function () {
 				endpoint: '/track',
 				event: '$create_alias'
 			})
-			var mockedRequest = createMixpanelMock({ endpoint: '/track' })
+			var mockedRequest = createMixpanelMock({ 
+				filterQuery: function() { return true }, 
+				endpoint: '/track' 
+			})
 
 			eventLog = ResinEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,

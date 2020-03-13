@@ -87,7 +87,8 @@ var EVENTS = {
 	billing: [ 'paymentInfoUpdate', 'planChange', 'invoiceDownload' ],
 	onboarding: [ 'stepClick', 'whatNextItemClick'],
 	page: [ 'visit' ],
-	navigation: ['click']
+	navigation: ['click'],
+	members: [ 'create', 'edit', 'delete', 'invite' ],
 }
 
 var DEFAULT_HOOKS = {
