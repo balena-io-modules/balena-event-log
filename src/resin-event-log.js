@@ -86,6 +86,7 @@ var EVENTS = {
 	releaseTag: [ 'set', 'create', 'edit', 'delete' ],
 	billing: [ 'paymentInfoUpdate', 'planChange', 'invoiceDownload' ],
 	onboarding: [ 'stepClick', 'whatNextItemClick'],
+	gettingStartedGuide: ['modalShow', 'modalHide', 'modalSkip', 'modalGuideOpen'],
 	page: [ 'visit' ],
 	navigation: ['click'],
 	members: [ 'create', 'edit', 'delete', 'invite' ],
