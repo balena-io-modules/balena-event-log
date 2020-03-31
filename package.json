@@ -1,6 +1,6 @@
 {
   "name": "resin-event-log",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "description": "Resin events logging util",
   "main": "src/resin-event-log.js",
   "dependencies": {
