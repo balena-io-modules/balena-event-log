@@ -90,6 +90,7 @@ var EVENTS = {
 	page: [ 'visit' ],
 	navigation: ['click'],
 	members: [ 'create', 'edit', 'delete', 'invite' ],
+	deployToBalena: ['cancel']
 }
 
 var DEFAULT_HOOKS = {
