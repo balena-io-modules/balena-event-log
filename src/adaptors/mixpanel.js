@@ -1,4 +1,3 @@
-var assign = require('lodash/assign');
 var pick = require('lodash/pick');
 
 var ResinMixpanelClient = require('resin-mixpanel-client');
@@ -17,7 +16,7 @@ var UPDATE_USER_FIELDS = [
 ];
 
 var getMixpanelUser = function (userData) {
-	var mixpanelUser = assign(
+	var mixpanelUser = Object.assign(
 		{
 			$email: userData.email,
 			$name: userData.username,
