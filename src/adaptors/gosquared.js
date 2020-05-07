@@ -1,4 +1,4 @@
-var ResinGsClient = require('resin-universal-gosquared');
+var GsClient = require('resin-universal-gosquared');
 
 module.exports = function (options) {
 	var debug = options.debug;
@@ -22,7 +22,7 @@ module.exports = function (options) {
 		return null;
 	}
 
-	var gsClient = ResinGsClient(gosquaredId, apiKey, debug);
+	var gsClient = GsClient(gosquaredId, apiKey, debug);
 
 	return {
 		login: function (user) {
