@@ -1,39 +1,42 @@
-var ResinGaClient = require('resin-universal-ga')
+var ResinGaClient = require('resin-universal-ga');
 
 module.exports = function (options) {
-	var debug = options.debug,
-		propertyId = options.gaId,
-		site = options.gaSite
+	var debug = options.debug;
+	var propertyId = options.gaId;
+	var site = options.gaSite;
 
 	if (!(propertyId && site)) {
 		if (debug) {
-			console.warn("`gaId` and/or `gaSite` are not set, GA tracking is disabled")
+			console.warn(
+				'`gaId` and/or `gaSite` are not set, GA tracking is disabled',
+			);
 		}
-		return null
+		return null;
 	}
 
-	var gaClient = ResinGaClient(propertyId, site, debug)
+	var gaClient = ResinGaClient(propertyId, site, debug);
 
 	return {
-		login: function(user) {
+		login: function (user) {
 			if (user) {
-				return gaClient.login(user.id)
+				return gaClient.login(user.id);
 			} else {
-				if (debug) console.warn("GA: user.id not set, continuing with anon login")
-				return gaClient.anonLogin()
+				if (debug)
+					console.warn('GA: user.id not set, continuing with anon login');
+				return gaClient.anonLogin();
 			}
 		},
-		logout: function() {
-			return gaClient.logout()
+		logout: function () {
+			return gaClient.logout();
 		},
 		track: function (prefix, type, data) {
-			return gaClient.track(site, type, prefix, data)
+			return gaClient.track(site, type, prefix, data);
 		},
-		getDistinctId: function() {
-			return {ga: null}
+		getDistinctId: function () {
+			return { ga: null };
 		},
-		identify: function() {
-			return null
-		}
-	}
-}
+		identify: function () {
+			return null;
+		},
+	};
+};
