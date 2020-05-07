@@ -12,6 +12,8 @@
   },
   "devDependencies": {
     "@balena/lint": "^5.0.4",
+    "@types/bluebird": "^3.5.30",
+    "@types/lodash": "^4.14.150",
     "balena-config-karma": "^2.3.1",
     "base-64": "^0.1.0",
     "browserify": "^14.0.0",
