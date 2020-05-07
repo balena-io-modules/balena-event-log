@@ -1,7 +1,5 @@
 var Promise = require('bluebird');
-var assign = require('lodash/assign');
 var pick = require('lodash/pick');
-var keys = require('lodash/keys');
 var startCase = require('lodash/startCase');
 
 var EVENTS = {
@@ -127,7 +125,7 @@ module.exports = function (options) {
 		throw Error('`prefix` is required.');
 	}
 
-	var hooks = assign({}, DEFAULT_HOOKS, pick(options, keys(DEFAULT_HOOKS)));
+	var hooks = Object.assign({}, DEFAULT_HOOKS, pick(options, Object.keys(DEFAULT_HOOKS)));
 
 	var adaptors = ADAPTORS.map(function (adaptorFactory) {
 		return adaptorFactory(options);
@@ -237,7 +235,7 @@ module.exports = function (options) {
 		},
 	};
 
-	keys(EVENTS).forEach(function (base) {
+	Object.keys(EVENTS).forEach(function (base) {
 		var events = EVENTS[base];
 		var obj = (eventLog[base] = {});
 		events.forEach(function (event) {
