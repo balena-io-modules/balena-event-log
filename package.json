@@ -1,5 +1,5 @@
 {
-  "name": "resin-event-log",
+  "name": "@balena/event-log",
   "version": "1.25.1",
   "description": "Balena events logging util",
   "main": "build/balena-event-log.js",

@@ -5,13 +5,13 @@ Balena event logging facility.
 ## Installing
 
 ```sh
-$ npm install resin-event-log
+$ npm install @balena/event-log
 ```
 
 ## Using
 
 ```javascript
-var EventLog = require('resin-event-log')
+var EventLog = require('@balena/event-log')
 
 var eventLogger = EventLog({
 	debug: true,
