@@ -16,14 +16,14 @@ if (IS_BROWSER) {
 	}
 }
 
-var ResinEventLog = require('..')
+var BalenaEventLog = require('..')
 
 var MIXPANEL_TOKEN = 'MIXPANEL_TOKEN'
 var SYSTEM = 'TEST'
 var MIXPANEL_HOST = 'https://api.mixpanel.com'
 var MIXPANEL_BROWSER_HOST = 'https://api-js.mixpanel.com'
 var GA_ID = 'UA-123456-0'
-var GA_SITE = 'resintest.io'
+var GA_SITE = 'balena-dev.com'
 var GOSQUARED_ID = 'GSN-575655-Q'
 var GOSQUARED_API_KEY = '12345'
 var GOSQUARED_HOST = 'https://api.gosquared.com'
@@ -166,7 +166,7 @@ function createGsMock(options, times) {
 	return aggregateMock(mocks)
 }
 
-describe('ResinEventLog', function () {
+describe('BalenaEventLog', function () {
 
 	before(mock.init)
 	afterEach(mock.reset)
@@ -208,7 +208,7 @@ describe('ResinEventLog', function () {
 				endpoint: '/track'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -236,7 +236,7 @@ describe('ResinEventLog', function () {
 				event: FAKE_EVENT
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -264,7 +264,7 @@ describe('ResinEventLog', function () {
 				event: 'Device Rename'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -301,7 +301,7 @@ describe('ResinEventLog', function () {
 				})()
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -337,7 +337,7 @@ describe('ResinEventLog', function () {
 				})()
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -378,7 +378,7 @@ describe('ResinEventLog', function () {
 		})
 
 		it('should throw error when user with no .id is passed', function (done) {
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG
@@ -422,12 +422,12 @@ describe('ResinEventLog', function () {
 				endpoint: '/track',
 				event: '$create_alias'
 			})
-			var mockedRequest = createMixpanelMock({ 
+			var mockedRequest = createMixpanelMock({
 				filterQuery: function() { return true },
 				endpoint: '/track'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -452,12 +452,12 @@ describe('ResinEventLog', function () {
 				endpoint: '/track',
 				event: '$create_alias'
 			})
-			var mockedRequest = createMixpanelMock({ 
-				filterQuery: function() { return true }, 
-				endpoint: '/track' 
+			var mockedRequest = createMixpanelMock({
+				filterQuery: function() { return true },
+				endpoint: '/track'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
@@ -496,7 +496,7 @@ describe('ResinEventLog', function () {
 				endpoint: '/collect'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gaId: GA_ID,
 				gaSite: GA_SITE,
 				prefix: SYSTEM,
@@ -523,7 +523,7 @@ describe('ResinEventLog', function () {
 				user: FAKE_USER
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gaId: GA_ID,
 				gaSite: GA_SITE,
 				prefix: SYSTEM,
@@ -552,7 +552,7 @@ describe('ResinEventLog', function () {
 				}
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gaId: GA_ID,
 				gaSite: GA_SITE,
 				prefix: SYSTEM,
@@ -579,7 +579,7 @@ describe('ResinEventLog', function () {
 				event: 'Device Rename'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gaId: GA_ID,
 				gaSite: GA_SITE,
 				prefix: SYSTEM,
@@ -609,7 +609,7 @@ describe('ResinEventLog', function () {
 				event: FAKE_EVENT
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gaId: GA_ID,
 				gaSite: GA_SITE,
 				prefix: SYSTEM,
@@ -658,7 +658,7 @@ describe('ResinEventLog', function () {
 				endpoint: endpoint
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gosquaredId: GOSQUARED_ID,
 				gosquaredApiKey: GOSQUARED_API_KEY,
 				prefix: SYSTEM,
@@ -675,7 +675,7 @@ describe('ResinEventLog', function () {
 						done()
 					} else {
 						// TODO: mock browser tests.
-						// see: https://github.com/resin-io-modules/resin-analytics/pull/14
+						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
 						done()
 					}
 				}
@@ -692,7 +692,7 @@ describe('ResinEventLog', function () {
 				user: FAKE_USER,
 				event: FAKE_EVENT
 			})
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gosquaredId: GOSQUARED_ID,
 				gosquaredApiKey: GOSQUARED_API_KEY,
 				prefix: SYSTEM,
@@ -709,7 +709,7 @@ describe('ResinEventLog', function () {
 						done()
 					} else {
 						// TODO: mock browser tests.
-						// see: https://github.com/resin-io-modules/resin-analytics/pull/14
+						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
 						done()
 					}
 				}
@@ -729,7 +729,7 @@ describe('ResinEventLog', function () {
 				event: FAKE_EVENT
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gosquaredId: GOSQUARED_ID,
 				gosquaredApiKey: GOSQUARED_API_KEY,
 				prefix: SYSTEM,
@@ -746,7 +746,7 @@ describe('ResinEventLog', function () {
 						done()
 					} else {
 						// TODO: mock browser tests.
-						// see: https://github.com/resin-io-modules/resin-analytics/pull/14
+						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
 						done()
 					}
 				}
@@ -763,7 +763,7 @@ describe('ResinEventLog', function () {
 				event: 'Device Rename'
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gosquaredId: GOSQUARED_ID,
 				gosquaredApiKey: GOSQUARED_API_KEY,
 				prefix: SYSTEM,
@@ -780,7 +780,7 @@ describe('ResinEventLog', function () {
 						done()
 					} else {
 						// TODO: mock browser tests.
-						// see: https://github.com/resin-io-modules/resin-analytics/pull/14
+						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
 						done()
 					}
 				}
@@ -800,7 +800,7 @@ describe('ResinEventLog', function () {
 				event: FAKE_EVENT
 			})
 
-			eventLog = ResinEventLog({
+			eventLog = BalenaEventLog({
 				gosquaredId: GOSQUARED_ID,
 				gosquaredApiKey: GOSQUARED_API_KEY,
 				prefix: SYSTEM,
@@ -847,7 +847,7 @@ describe('ResinEventLog', function () {
 
 	describe('All platforms', function () {
 		it('Trigger getDistinctId in browser & fail in node', function (done) {
-			var eventLog = ResinEventLog({
+			var eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				gaId: GA_ID,
 				gaSite: GA_SITE,
@@ -884,7 +884,7 @@ describe('ResinEventLog', function () {
 		})
 
 		it('Trigger identify in browser & fail in node', function (done) {
-			var eventLog = ResinEventLog({
+			var eventLog = BalenaEventLog({
 				mixpanelToken: MIXPANEL_TOKEN,
 				gaId: GA_ID,
 				gaSite: GA_SITE,

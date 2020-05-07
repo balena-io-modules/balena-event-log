@@ -1,6 +1,6 @@
 var pick = require('lodash/pick');
 
-var ResinMixpanelClient = require('resin-mixpanel-client');
+var MixpanelClient = require('resin-mixpanel-client');
 
 var ONE_TIME_USER_FIELDS = ['$created'];
 
@@ -46,7 +46,7 @@ module.exports = function (options) {
 		return null;
 	}
 
-	var mixpanel = ResinMixpanelClient(token, mixpanelOptions);
+	var mixpanel = MixpanelClient(token, mixpanelOptions);
 
 	return {
 		login: function (user, deviceIds) {

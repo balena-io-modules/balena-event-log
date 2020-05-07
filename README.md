@@ -1,6 +1,6 @@
-# Resin Event Log
+# Balena Event Log
 
-Resin event logging facility.
+Balena event logging facility.
 
 ## Installing
 
@@ -17,7 +17,7 @@ var eventLogger = EventLog({
 	debug: true,
 	mixpanelToken: MIXPANEL_TOKEN,
 	mixpanelHost: 'api.mixpanel.com',
-	gaSite: 'resin.io',
+	gaSite: 'balena-cloud.com',
 	gaId: GA_ID,
 	prefix: 'UI, CLI, etc.',
 	// Hooks:

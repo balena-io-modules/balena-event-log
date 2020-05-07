@@ -1,4 +1,4 @@
-var ResinGaClient = require('resin-universal-ga');
+var GaClient = require('resin-universal-ga');
 
 module.exports = function (options) {
 	var debug = options.debug;
@@ -14,7 +14,7 @@ module.exports = function (options) {
 		return null;
 	}
 
-	var gaClient = ResinGaClient(propertyId, site, debug);
+	var gaClient = GaClient(propertyId, site, debug);
 
 	return {
 		login: function (user) {
