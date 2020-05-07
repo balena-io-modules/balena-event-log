@@ -1,6 +1,5 @@
 var assign = require('lodash/assign')
 var pick = require('lodash/pick')
-var Promise = require('bluebird')
 
 var ResinMixpanelClient = require('resin-mixpanel-client')
 

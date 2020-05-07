@@ -32,7 +32,7 @@ module.exports = function (options) {
 		getDistinctId: function() {
 			return {ga: null}
 		},
-		identify: function(ids) {
+		identify: function() {
 			return null
 		}
 	}

@@ -95,10 +95,10 @@ var EVENTS = {
 }
 
 var DEFAULT_HOOKS = {
-	beforeCreate: function(type, jsonData, applicationId, deviceId, callback) {
+	beforeCreate: function(_type, _jsonData, _applicationId, _deviceId, callback) {
 		return callback()
 	},
-	afterCreate: function(error, type, jsonData, applicationId, deviceId) {}
+	afterCreate: function(_error, _type, _jsonData, _applicationId, _deviceId) {}
 }
 
 var ADAPTORS = [
@@ -130,7 +130,7 @@ module.exports = function(options) {
 
 	function runForAllAdaptors(methodName, args, callback) {
 		return Promise.map(adaptors, function (adaptor) {
-			return adaptor[methodName]
+			return adaptor?.[methodName]
 				? adaptor[methodName].apply(adaptor, args)
 				: null
 		}).asCallback(callback)

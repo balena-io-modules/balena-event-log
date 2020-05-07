@@ -40,7 +40,7 @@ module.exports = function (options) {
 		getDistinctId: function() {
 			return {gs: null}
 		},
-		identify: function(ids) {
+		identify: function() {
 			return null
 		}
 	}
