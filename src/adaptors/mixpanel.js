@@ -1,12 +1,9 @@
-var assign = require('lodash/assign')
-var pick = require('lodash/pick')
-var Promise = require('bluebird')
+var assign = require('lodash/assign');
+var pick = require('lodash/pick');
 
-var ResinMixpanelClient = require('resin-mixpanel-client')
+var ResinMixpanelClient = require('resin-mixpanel-client');
 
-var ONE_TIME_USER_FIELDS = [
-	'$created'
-]
+var ONE_TIME_USER_FIELDS = ['$created'];
 
 var UPDATE_USER_FIELDS = [
 	'$email',
@@ -16,71 +13,76 @@ var UPDATE_USER_FIELDS = [
 	'id',
 	'permissions',
 	'public_key',
-	'username'
-]
+	'username',
+];
 
-var getMixpanelUser = function(userData) {
-	var mixpanelUser = assign({
-		'$email': userData.email,
-		'$name': userData.username
-	}, userData)
+var getMixpanelUser = function (userData) {
+	var mixpanelUser = assign(
+		{
+			$email: userData.email,
+			$name: userData.username,
+		},
+		userData,
+	);
 	return {
 		oneTime: pick(mixpanelUser, ONE_TIME_USER_FIELDS),
-		update: pick(mixpanelUser, UPDATE_USER_FIELDS)
-	}
-}
+		update: pick(mixpanelUser, UPDATE_USER_FIELDS),
+	};
+};
 
 module.exports = function (options) {
-	var debug = options.debug,
-		token = options.mixpanelToken,
-		mixpanelOptions = options.mixpanelHost ? {
-			api_host: options.mixpanelHost,
-			decide_host: options.mixpanelHost
-		} : {}
+	var debug = options.debug;
+	var token = options.mixpanelToken;
+	var mixpanelOptions = options.mixpanelHost
+		? {
+				api_host: options.mixpanelHost,
+				decide_host: options.mixpanelHost,
+		  }
+		: {};
 
 	if (!token) {
 		if (debug) {
-			console.warn("`mixpanelToken` is not set, Mixpanel tracking is disabled")
+			console.warn('`mixpanelToken` is not set, Mixpanel tracking is disabled');
 		}
-		return null
+		return null;
 	}
 
-	var mixpanel = ResinMixpanelClient(token, mixpanelOptions)
+	var mixpanel = ResinMixpanelClient(token, mixpanelOptions);
 
 	return {
-		login: function(user, deviceIds) {
-			if (!user) return
-			var methodName = user.$created ? 'signup' : 'login'
-			var mixpanelUser = getMixpanelUser(user)
+		login: function (user, deviceIds) {
+			if (!user) return;
+			var methodName = user.$created ? 'signup' : 'login';
+			var mixpanelUser = getMixpanelUser(user);
 
 			return mixpanel[methodName](user.username, deviceIds)
-				.then(function() {
+				.then(function () {
 					// Calling this also ensures that the auto-tracked properties
 					// ($os, $browser, $browser_version, $initial_referrer, $initial_referring_domain)
 					// are collected and sent
-					return mixpanel.setUser(mixpanelUser.update)
+					return mixpanel.setUser(mixpanelUser.update);
 				})
-				.then(function() {
-					return mixpanel.setUserOnce(mixpanelUser.oneTime)
-				})
+				.then(function () {
+					return mixpanel.setUserOnce(mixpanelUser.oneTime);
+				});
 		},
-		logout: function() {
-			return mixpanel.logout()
+		logout: function () {
+			return mixpanel.logout();
 		},
 		track: function (prefix, type, data) {
-			return mixpanel.track("[" + prefix + "] " + type, data)
+			return mixpanel.track('[' + prefix + '] ' + type, data);
 		},
-		getDistinctId: function() {
-			return {mixpanel: mixpanel.getDistinctId()}
+		getDistinctId: function () {
+			return { mixpanel: mixpanel.getDistinctId() };
 		},
-		identify: function(ids) {
-			var mixpanelId = ids['mixpanel']
+		identify: function (ids) {
+			var mixpanelId = ids['mixpanel'];
 
-			if (!mixpanelId){
-				return null
+			if (!mixpanelId) {
+				return null;
 			}
 
-			return mixpanel.identify(mixpanelId)
-		}
-	}
-}
+			return mixpanel.identify(mixpanelId);
+		},
+	};
+};

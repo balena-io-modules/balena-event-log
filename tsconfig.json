@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2015",
+		"outDir": "build",
+		"noImplicitAny": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"rootDir": "src",
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"allowJs": true,
+		"checkJs": true,
+		"moduleResolution": "node",
+	},
+	"include": [
+		"src/*"
+	]
+}

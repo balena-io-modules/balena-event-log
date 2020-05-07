@@ -2,7 +2,7 @@
   "name": "resin-event-log",
   "version": "1.24.0",
   "description": "Resin events logging util",
-  "main": "src/resin-event-log.js",
+  "main": "build/resin-event-log.js",
   "dependencies": {
     "bluebird": "^3.4.7",
     "lodash": "^4.0.0",
@@ -11,6 +11,7 @@
     "resin-universal-gosquared": "^0.2.0"
   },
   "devDependencies": {
+    "@balena/lint": "^5.0.4",
     "balena-config-karma": "^2.3.1",
     "base-64": "^0.1.0",
     "browserify": "^14.0.0",
@@ -18,15 +19,18 @@
     "karma": "^1.7.0",
     "mocha": "^3.5.0",
     "querystring": "^0.2.0",
-    "resin-lint": "^1.4.0",
-    "resin-universal-http-mock": "^1.0.1"
+    "resin-universal-http-mock": "^1.0.1",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "bundle": "browserify src/resin-event-log.js -o build/bundle.js",
-    "lint": "resin-lint src",
+    "lint": "balena-lint --typescript --fix -e js src",
     "test-node": "mocha \"./tests/**/*.js\"",
     "test-browser": "karma start",
-    "test": "npm run test-node && npm run test-browser"
+    "pretest": "npm run lint && npm run build",
+    "test": "npm run test-node && npm run test-browser",
+    "build": "npx tsc",
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
