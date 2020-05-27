@@ -13,7 +13,7 @@ const UPDATE_USER_FIELDS = [
 	'username',
 ];
 
-const getUserProperties = function (userData) {
+const userProperties = function (userData) {
 	// TODO: Think about moving this to the analytics-client.
 	const data = Object.assign(
 		{
@@ -23,16 +23,13 @@ const getUserProperties = function (userData) {
 		userData,
 	);
 	return {
-		$setOnce: pick(data, ONE_TIME_USER_FIELDS),
-		$set: pick(data, UPDATE_USER_FIELDS),
+		setOnce: pick(data, ONE_TIME_USER_FIELDS),
+		set: pick(data, UPDATE_USER_FIELDS),
 	};
 };
 
 module.exports = function (options) {
 	const analyticsClient = options.analyticsClient;
-
-	// TODO: Remove direct Amplitude interface usage.
-	const amplitude = analyticsClient.amplitude();
 	const tracker = createWebTracker(options.analyticsClient);
 
 	return {
@@ -40,17 +37,17 @@ module.exports = function (options) {
 			if (!user) {
 				return;
 			}
-			amplitude.setUserProperties(getUserProperties(user));
-			amplitude.setUserId(user.username);
+			analyticsClient.setUserId(user.username);
+			analyticsClient.setUserProperties(userProperties(user));
 		},
 		logout: async () => {
-			amplitude.setUserId(null);
-			amplitude.regenerateDeviceId();
+			analyticsClient.setUserId(null);
+			analyticsClient.regenerateDeviceId();
 		},
 		track: async (prefix, type, data) => {
 			tracker.track(`[${prefix}] ${type}`, data);
 		},
-		getDistinctId: function () {
+		getDistinctId: () => {
 			const id = analyticsClient.deviceId();
 			return { analyticsClient: id, mixpanel: id };
 		},
@@ -59,7 +56,7 @@ module.exports = function (options) {
 			if (!id) {
 				return null;
 			}
-			amplitude.setUserId(id);
+			analyticsClient.setUserId(id);
 		},
 	};
 };

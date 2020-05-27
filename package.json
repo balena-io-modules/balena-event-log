@@ -4,7 +4,7 @@
   "description": "Balena events logging util",
   "main": "build/balena-event-log.js",
   "dependencies": {
-    "analytics-client": "^0.6.2",
+    "analytics-client": "^0.8.0",
     "bluebird": "^3.4.7",
     "lodash": "^4.0.0",
     "resin-universal-ga": "^1.2.2",

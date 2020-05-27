@@ -165,16 +165,8 @@ describe('BalenaEventLog', function () {
 		lastUserId = null
 		regenerateCalled = false
 		analyticsClient.track = (eventType, props) => trackedEvents.push({eventType, props})
-		analyticsClient.amplitude = () => ({
-			setUserId(userId) {
-				lastUserId = userId
-			},
-			setUserProperties(properties) {
-				lastUserProperties = properties
-			},
-			regenerateDeviceId() {
-			}
-		})
+		analyticsClient.setUserId = (userId) => { lastUserId = userId }
+		analyticsClient.setUserProperties = (props) => { lastUserProperties = props }
 	});
 
 	describe('Analytics client track', function () {
@@ -306,7 +298,7 @@ describe('BalenaEventLog', function () {
 
 			await eventLog.start(FAKE_USER)
 			expect(lastUserProperties).to.be.not.null
-			expect(lastUserProperties.$setOnce).to.haveOwnProperty('$created')
+			expect(lastUserProperties.setOnce).to.haveOwnProperty('$created')
 		})
 
 		it('should set $email with $set', async () => {
@@ -322,8 +314,8 @@ describe('BalenaEventLog', function () {
 				email: 'fake@example.com',
 			})
 			expect(lastUserProperties).to.be.not.null
-			expect(lastUserProperties.$set).to.haveOwnProperty('$email')
-			expect(lastUserProperties.$set.$email).to.be.equal('fake@example.com')
+			expect(lastUserProperties.set).to.haveOwnProperty('$email')
+			expect(lastUserProperties.set.$email).to.be.equal('fake@example.com')
 		})
 	})
 
