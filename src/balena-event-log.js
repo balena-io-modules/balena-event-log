@@ -113,19 +113,26 @@ var DEFAULT_HOOKS = {
 
 var ADAPTORS = [
 	require('./adaptors/ga'),
-	require('./adaptors/mixpanel'),
+	require('./adaptors/analytics-client'),
 	require('./adaptors/gosquared'),
 ];
 
 module.exports = function (options) {
 	options = options || {};
-	var prefix = options.prefix;
-	var debug = options.debug;
+	options = options || {};
+	const { prefix, analyticsClient, debug } = options;
 	if (!prefix) {
 		throw Error('`prefix` is required.');
 	}
+	if (!analyticsClient) {
+		throw Error('`analyticsClient` is required.');
+	}
 
-	var hooks = Object.assign({}, DEFAULT_HOOKS, pick(options, Object.keys(DEFAULT_HOOKS)));
+	var hooks = Object.assign(
+		{},
+		DEFAULT_HOOKS,
+		pick(options, Object.keys(DEFAULT_HOOKS)),
+	);
 
 	var adaptors = ADAPTORS.map(function (adaptorFactory) {
 		return adaptorFactory(options);

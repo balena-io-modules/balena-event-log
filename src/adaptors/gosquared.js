@@ -29,10 +29,11 @@ module.exports = function (options) {
 			if (user) {
 				return gsClient.login(user.id);
 			} else {
-				if (debug)
+				if (debug) {
 					console.warn(
 						'Gosquared: user.id not set, continuing with anon login',
 					);
+				}
 				return gsClient.anonLogin();
 			}
 		},

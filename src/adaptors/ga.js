@@ -21,8 +21,9 @@ module.exports = function (options) {
 			if (user) {
 				return gaClient.login(user.id);
 			} else {
-				if (debug)
+				if (debug) {
 					console.warn('GA: user.id not set, continuing with anon login');
+				}
 				return gaClient.anonLogin();
 			}
 		},
