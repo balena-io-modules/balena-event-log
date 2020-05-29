@@ -92,7 +92,7 @@ var EVENTS = {
 	page: ['visit'],
 	navigation: ['click'],
 	members: ['create', 'edit', 'delete', 'invite'],
-	deployToBalena: ['cancel'],
+	deployToBalena: ['open', 'cancel'],
 	invite: ['addInviteOpen', 'create', 'delete', 'accept'],
 };
 
