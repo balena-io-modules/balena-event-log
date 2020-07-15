@@ -1,7 +1,6 @@
 var Analytics = require('analytics-client')
 var _ = require('lodash')
 var expect = require('chai').expect
-var base64Decode = require('base-64').decode
 var querystring = require('querystring')
 var mock = require('resin-universal-http-mock')
 
