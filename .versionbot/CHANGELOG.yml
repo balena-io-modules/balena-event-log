@@ -1,286 +1,296 @@
 - commits:
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: major
-    hash: 3e2f7cb90c1054d2d0c937d464f5b99e6a45e24e
-    subject: Switch to native promises
-  date: "2020-07-15T15:46:49Z"
+    - subject: Add .versionbot/CHANGELOG.yml for nested changelogs
+      hash: 04b82b9a50ccbd0856f609232ead6332f527bf2c
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Pagan Gazzard
+  version: 4.0.1
+  date: 2020-07-15T16:00:07.893Z
+- commits:
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: major
+      hash: 3e2f7cb90c1054d2d0c937d464f5b99e6a45e24e
+      subject: Switch to native promises
+  date: '2020-07-15T15:46:49Z'
   version: 4.0.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: 95b6d9bc383affb62778969e7c608fdb91579e3c
-    subject: Add deploy with balena open event
-  date: "2020-05-29T14:30:07Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: 95b6d9bc383affb62778969e7c608fdb91579e3c
+      subject: Add deploy with balena open event
+  date: '2020-05-29T14:30:07Z'
   version: 3.1.0
 - commits:
-  - author: Roman Mazur
-    body: |-
-      Also makes this module browser-only.
-      NodeJS support is being moved to analytics-client module.
-    footers:
-      change-type: major
-      signed-off-by: Roman Mazur <roman@balena.io>
-    hash: 26dbd0086117787fdeaee4d2c78a800809f39a5e
-    subject: Replace mixpanel with analytics-client
-  - author: Roman Mazur
-    body: ""
-    footers:
-      change-type: patch
-      signed-off-by: Roman Mazur <roman@balena.io>
-    hash: 6b9c0b38f06e0e2b08e0955f936da51192b2c727
-    subject: Stop leaking Amplitude interface
-  date: "2020-05-28T08:50:20Z"
+    - author: Roman Mazur
+      body: |-
+        Also makes this module browser-only.
+        NodeJS support is being moved to analytics-client module.
+      footers:
+        change-type: major
+        signed-off-by: Roman Mazur <roman@balena.io>
+      hash: 26dbd0086117787fdeaee4d2c78a800809f39a5e
+      subject: Replace mixpanel with analytics-client
+    - author: Roman Mazur
+      body: ''
+      footers:
+        change-type: patch
+        signed-off-by: Roman Mazur <roman@balena.io>
+      hash: 6b9c0b38f06e0e2b08e0955f936da51192b2c727
+      subject: Stop leaking Amplitude interface
+  date: '2020-05-28T08:50:20Z'
   version: 3.0.0
 - commits:
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: major
-    hash: 3ddabd8514966d7370342e1a8f7b17eed9614c20
-    subject: Rename module to @balena/event-log
-  date: "2020-05-07T16:33:20Z"
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: major
+      hash: 3ddabd8514966d7370342e1a8f7b17eed9614c20
+      subject: Rename module to @balena/event-log
+  date: '2020-05-07T16:33:20Z'
   version: 2.0.0
 - commits:
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: patch
-    hash: 03affaf9b1435e768b06c7032abd4d21c05a40e1
-    subject: Update references to balena
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: patch
-    hash: 928ac5ff6f620549673677891cc765e2d4e3ac55
-    subject: Add types packages for better type checking
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: patch
-    hash: 6ce1678423f6622ea64fde9fe324430b9313c1b0
-    subject: Reduce lodash usage
-  date: "2020-05-07T14:14:22Z"
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: patch
+      hash: 03affaf9b1435e768b06c7032abd4d21c05a40e1
+      subject: Update references to balena
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: patch
+      hash: 928ac5ff6f620549673677891cc765e2d4e3ac55
+      subject: Add types packages for better type checking
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: patch
+      hash: 6ce1678423f6622ea64fde9fe324430b9313c1b0
+      subject: Reduce lodash usage
+  date: '2020-05-07T14:14:22Z'
   version: 1.25.1
 - commits:
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: minor
-    hash: 4597ef5e2d9a2c6807072f9b013e8f9869f0f1a0
-    subject: Add type checking and transpilation to enable modern js features
-  - author: Pagan Gazzard
-    body: ""
-    footers:
-      change-type: patch
-    hash: 8439c38ca90005b5985c022036fdcf5ea76f934a
-    subject: Make use of balena-lint
-  date: "2020-05-07T12:25:22Z"
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: minor
+      hash: 4597ef5e2d9a2c6807072f9b013e8f9869f0f1a0
+      subject: Add type checking and transpilation to enable modern js features
+    - author: Pagan Gazzard
+      body: ''
+      footers:
+        change-type: patch
+      hash: 8439c38ca90005b5985c022036fdcf5ea76f934a
+      subject: Make use of balena-lint
+  date: '2020-05-07T12:25:22Z'
   version: 1.25.0
 - commits:
-  - author: Amit Solanki
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Amit Solanki <amit@balena.io>
-    hash: 7d197befc1fbdc69d558941214d6aa1633b91a17
-    subject: Add Application invite events
-  date: "2020-04-29T08:37:59Z"
+    - author: Amit Solanki
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Amit Solanki <amit@balena.io>
+      hash: 7d197befc1fbdc69d558941214d6aa1633b91a17
+      subject: Add Application invite events
+  date: '2020-04-29T08:37:59Z'
   version: 1.24.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: 8293ed7be8136729aa97ca2d575bc4b565939d9f
-    subject: Add deploy to balena cancel event
-  date: "2020-04-28T12:07:36Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: 8293ed7be8136729aa97ca2d575bc4b565939d9f
+      subject: Add deploy to balena cancel event
+  date: '2020-04-28T12:07:36Z'
   version: 1.23.0
 - commits:
-  - author: JSReds
-    body: empty commit to handle version error
-    footers:
-      change-type: minor
-      signed-off-by: Andrea Rosci <andrear@balena.io>
-    hash: 537875c9cef432198cbe6e3922dc5fc7b9b0524c
-    subject: 'fix: versioning'
-  - author: JSReds
-    body: add getting started guide modal events
-    footers:
-      change-type: minor
-      see: flowdock discussion
-      signed-off-by: Andrea Rosci <andrear@balena.io>
-    hash: d718cf1ce698c31299b9695f672a2c17dfbd520e
-    subject: 'add: getting started guide logs'
-  date: "2020-03-31T15:53:03Z"
+    - author: JSReds
+      body: empty commit to handle version error
+      footers:
+        change-type: minor
+        signed-off-by: Andrea Rosci <andrear@balena.io>
+      hash: 537875c9cef432198cbe6e3922dc5fc7b9b0524c
+      subject: 'fix: versioning'
+    - author: JSReds
+      body: add getting started guide modal events
+      footers:
+        change-type: minor
+        see: flowdock discussion
+        signed-off-by: Andrea Rosci <andrear@balena.io>
+      hash: d718cf1ce698c31299b9695f672a2c17dfbd520e
+      subject: 'add: getting started guide logs'
+  date: '2020-03-31T15:53:03Z'
   version: 1.22.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: patch
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: f9dbbd9ca4daa651ba0abcdad3931a1673bc1b90
-    subject: Fix tests to pass due to changes in mixpanel browser library
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: f7b0d09146a68ebb18e983067d58a656243e8547
-    subject: Add application member events
-  date: "2020-03-13T18:13:34Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: patch
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: f9dbbd9ca4daa651ba0abcdad3931a1673bc1b90
+      subject: Fix tests to pass due to changes in mixpanel browser library
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: f7b0d09146a68ebb18e983067d58a656243e8547
+      subject: Add application member events
+  date: '2020-03-13T18:13:34Z'
   version: 1.21.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: 8aeced048ece7baa286a04f91e6d97fcd50a43a0
-    subject: Add onboarding events
-  date: "2019-10-23T09:26:10Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: 8aeced048ece7baa286a04f91e6d97fcd50a43a0
+      subject: Add onboarding events
+  date: '2019-10-23T09:26:10Z'
   version: 1.20.0
 - commits:
-  - author: Roman Mazur
-    body: |-
-      This change exposes our proxy feature to associate multiple
-      device IDs to one user name.
-    footers:
-      change-type: minor
-      signed-off-by: Roman Mazur <roman@balena.io>
-    hash: 870b8a988785cdfd44d39e45b4c12144f48610b5
-    subject: Add a method for merging user timelines
-  date: "2019-10-03T11:50:54Z"
+    - author: Roman Mazur
+      body: |-
+        This change exposes our proxy feature to associate multiple
+        device IDs to one user name.
+      footers:
+        change-type: minor
+        signed-off-by: Roman Mazur <roman@balena.io>
+      hash: 870b8a988785cdfd44d39e45b4c12144f48610b5
+      subject: Add a method for merging user timelines
+  date: '2019-10-03T11:50:54Z'
   version: 1.19.0
 - commits:
-  - author: Matthew McGinn
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Matthew McGinn <matthew@balena.io>
-    hash: ecdf219961ba5d5a436fbd59728450194e4e0585
-    subject: 'device-diagnostics: add events for on-device diagnostics'
-  date: "2019-09-20T14:05:50Z"
+    - author: Matthew McGinn
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Matthew McGinn <matthew@balena.io>
+      hash: ecdf219961ba5d5a436fbd59728450194e4e0585
+      subject: 'device-diagnostics: add events for on-device diagnostics'
+  date: '2019-09-20T14:05:50Z'
   version: 1.18.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: patch
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: 482762bdf0b3c1fb65234783ac848a32c8b6dbec
-    subject: Fix release event names
-  date: "2019-09-16T14:20:55Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: patch
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: 482762bdf0b3c1fb65234783ac848a32c8b6dbec
+      subject: Fix release event names
+  date: '2019-09-16T14:20:55Z'
   version: 1.17.1
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: b30dd99c5b467c403487c74676edebe5a124d5e1
-    subject: Add release-related events
-  date: "2019-09-16T14:12:03Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: b30dd99c5b467c403487c74676edebe5a124d5e1
+      subject: Add release-related events
+  date: '2019-09-16T14:12:03Z'
   version: 1.17.0
 - commits:
-  - author: Thodoris Greasidis
-    body: ""
-    footers:
-      change-type: minor
-      see: https://github.com/balena-io/resin-ui/issues/2817
-      signed-off-by: Thodoris Greasidis <thodoris@balena.io>
-    hash: 24ab7be968849be85c7f4327a12e76b1b00ed087
-    subject: Add account delete event
-  date: "2019-09-16T09:17:37Z"
+    - author: Thodoris Greasidis
+      body: ''
+      footers:
+        change-type: minor
+        see: 'https://github.com/balena-io/resin-ui/issues/2817'
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      hash: 24ab7be968849be85c7f4327a12e76b1b00ed087
+      subject: Add account delete event
+  date: '2019-09-16T09:17:37Z'
   version: 1.16.0
 - commits:
-  - author: Roman Mazur
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Roman Mazur <mazur.roman@gmail.com>
-    hash: 98245859ff532acdecc7f0c49b42eb025b0d396a
-    subject: Bump mixpanel version
-  date: "2019-09-13T16:29:25Z"
+    - author: Roman Mazur
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Roman Mazur <mazur.roman@gmail.com>
+      hash: 98245859ff532acdecc7f0c49b42eb025b0d396a
+      subject: Bump mixpanel version
+  date: '2019-09-13T16:29:25Z'
   version: 1.15.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: 3e426c6458729b19944f82a4cdd9b609ada6fb70
-    subject: Add pinToRelease event
-  date: "2019-08-13T15:44:21Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: 3e426c6458729b19944f82a4cdd9b609ada6fb70
+      subject: Add pinToRelease event
+  date: '2019-08-13T15:44:21Z'
   version: 1.14.0
 - commits:
-  - author: Stevche Radevski
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Stevche Radevski <stevche@balena.io>
-    hash: 1c7c31890fb6026b3427d2b38b47d399d7c42f24
-    subject: Add os config download log event
-  date: "2019-06-27T08:47:07Z"
+    - author: Stevche Radevski
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Stevche Radevski <stevche@balena.io>
+      hash: 1c7c31890fb6026b3427d2b38b47d399d7c42f24
+      subject: Add os config download log event
+  date: '2019-06-27T08:47:07Z'
   version: 1.13.0
 - commits:
-  - author: Dimitrios Lytras
-    body: ""
-    footers:
-      change-type: minor
-      connects-to: '#5'
-      signed-off-by: Dimitrios Lytras <dimitrios@balena.io>
-    hash: 7580093b41175b6acfbf6347a3af1697473c8314
-    subject: Introduce 'getDistinctId' & 'identify'
-  date: "2019-04-19T12:29:00Z"
+    - author: Dimitrios Lytras
+      body: ''
+      footers:
+        change-type: minor
+        connects-to: '#5'
+        signed-off-by: Dimitrios Lytras <dimitrios@balena.io>
+      hash: 7580093b41175b6acfbf6347a3af1697473c8314
+      subject: Introduce 'getDistinctId' & 'identify'
+  date: '2019-04-19T12:29:00Z'
   version: 1.12.0
 - commits:
-  - author: Thodoris Greasidis
-    body: ""
-    footers:
-      change-type: patch
-      connects-to: '#7'
-      signed-off-by: Thodoris Greasidis <thodoris@balena.io>
-    hash: 9536b21b7f2f6fb2c441b7dde5dc3708a06b67fe
-    subject: Use balena-karma-config to work on balenaCI
-  date: "2019-04-19T11:35:45Z"
+    - author: Thodoris Greasidis
+      body: ''
+      footers:
+        change-type: patch
+        connects-to: '#7'
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      hash: 9536b21b7f2f6fb2c441b7dde5dc3708a06b67fe
+      subject: Use balena-karma-config to work on balenaCI
+  date: '2019-04-19T11:35:45Z'
   version: 1.11.1
 - commits:
-  - author: Dimitrios Lytras
-    body: ""
-    footers:
-      change-type: minor
-      signed-off-by: Dimitrios Lytras <dimitrios@balena.io>
-    hash: 3ca66305cb7f5584aa97049f14d9ecd1f75bbf22
-    subject: Introduce 'Navigation click' event
-  - author: Dimitrios Lytras
-    body: ""
-    hash: fdda2628aeb125689cfcdbff537e5bb43a4b7331
-    subject: Update .gitignore
-  - author: Dimitrios Lytras
-    body: ""
-    hash: a68c864230b861214e3976e5900a239698c1f3c7
-    subject: Format changelog
-  - author: Dimitrios Lytras
-    body: ""
-    hash: 52cc5825ca299c33962882d1c4eb2a9d58b6c585
-    subject: Update metadata
-  date: "2019-04-10T10:39:46Z"
+    - author: Dimitrios Lytras
+      body: ''
+      footers:
+        change-type: minor
+        signed-off-by: Dimitrios Lytras <dimitrios@balena.io>
+      hash: 3ca66305cb7f5584aa97049f14d9ecd1f75bbf22
+      subject: Introduce 'Navigation click' event
+    - author: Dimitrios Lytras
+      body: ''
+      hash: fdda2628aeb125689cfcdbff537e5bb43a4b7331
+      subject: Update .gitignore
+    - author: Dimitrios Lytras
+      body: ''
+      hash: a68c864230b861214e3976e5900a239698c1f3c7
+      subject: Format changelog
+    - author: Dimitrios Lytras
+      body: ''
+      hash: 52cc5825ca299c33962882d1c4eb2a9d58b6c585
+      subject: Update metadata
+  date: '2019-04-10T10:39:46Z'
   version: 1.11.0
 - commits:
-  - author: Pagan Gazzard
-    body: ""
-    hash: 825ce816a1bbf4faf3c209f11cdc1d01f43adf0e
-    subject: Switch to using resin-lint
-  - author: Eugene Mirotin
-    body: ""
-    hash: 916db9048b95135f3507dfd2f0b734dff0e3a3c1
-    subject: update to lodash 4
-  date: "2016-07-05T22:11:21Z"
+    - author: Pagan Gazzard
+      body: ''
+      hash: 825ce816a1bbf4faf3c209f11cdc1d01f43adf0e
+      subject: Switch to using resin-lint
+    - author: Eugene Mirotin
+      body: ''
+      hash: 916db9048b95135f3507dfd2f0b734dff0e3a3c1
+      subject: update to lodash 4
+  date: '2016-07-05T22:11:21Z'
   version: 1.10.0
