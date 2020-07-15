@@ -5,15 +5,13 @@
   "main": "build/balena-event-log.js",
   "dependencies": {
     "analytics-client": "^0.8.0",
-    "bluebird": "^3.4.7",
-    "lodash": "^4.0.0",
+    "lodash": "^4.17.19",
     "resin-universal-ga": "^1.2.2",
     "resin-universal-gosquared": "^0.2.0"
   },
   "devDependencies": {
-    "@balena/lint": "^5.0.4",
-    "@types/bluebird": "^3.5.30",
-    "@types/lodash": "^4.14.150",
+    "@balena/lint": "^5.1.0",
+    "@types/lodash": "^4.14.157",
     "balena-config-karma": "^2.3.1",
     "base-64": "^0.1.0",
     "browserify": "^14.0.0",
@@ -22,7 +20,7 @@
     "mocha": "^3.5.0",
     "querystring": "^0.2.0",
     "resin-universal-http-mock": "^1.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.6"
   },
   "scripts": {
     "bundle": "browserify src/balena-event-log.js -o build/bundle.js",

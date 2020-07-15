@@ -1,4 +1,3 @@
-var Promise = require('bluebird');
 var pick = require('lodash/pick');
 var startCase = require('lodash/startCase');
 
@@ -141,12 +140,18 @@ module.exports = function (options) {
 		return !!adaptor;
 	});
 
-	function runForAllAdaptors(methodName, args, callback) {
-		return Promise.map(adaptors, function (adaptor) {
-			return adaptor?.[methodName]
-				? adaptor[methodName].apply(adaptor, args)
-				: null;
-		}).asCallback(callback);
+	async function runForAllAdaptors(methodName, args, callback) {
+		const p = Promise.all(
+			adaptors.map(function (adaptor) {
+				return adaptor?.[methodName]?.(...args);
+			}),
+		);
+		if (callback) {
+			p.then((result) => {
+				callback(null, result);
+			}, callback);
+		}
+		return p;
 	}
 
 	var eventLog = {
@@ -175,14 +180,19 @@ module.exports = function (options) {
 			var _this = this;
 
 			function runBeforeHook() {
-				return Promise.fromCallback(function (cb) {
+				return new Promise(function (resolve, reject) {
 					hooks.beforeCreate.call(
 						_this,
 						type,
 						jsonData,
 						applicationId,
 						deviceId,
-						cb,
+						(err, result) => {
+							if (err) {
+								return reject(err)
+							}
+							resolve(result)
+						},
 					);
 				}).catch(function (err) {
 					// discard the hook error
@@ -193,15 +203,15 @@ module.exports = function (options) {
 			}
 
 			function runAfterHook(err) {
-				return Promise.try(function () {
-					hooks.afterCreate.call(
+				return new Promise(function (resolve) {
+					resolve(hooks.afterCreate.call(
 						_this,
 						err,
 						type,
 						jsonData,
 						applicationId,
 						deviceId,
-					);
+					));
 				}).catch(function (err2) {
 					// discard the hook error
 					if (debug) {
@@ -210,7 +220,7 @@ module.exports = function (options) {
 				});
 			}
 
-			return runBeforeHook()
+			const p = runBeforeHook()
 				.then(function () {
 					return runForAllAdaptors('track', [
 						_this.prefix,
@@ -231,7 +241,12 @@ module.exports = function (options) {
 				.then(function () {
 					return runAfterHook();
 				})
-				.asCallback(callback);
+				if (callback) {
+					p.then((result) => {
+						callback(null, result);
+					}, callback);
+				}
+				return p;
 		},
 		// These functions are only available for use in the browser
 		getDistinctId: function (callback) {
