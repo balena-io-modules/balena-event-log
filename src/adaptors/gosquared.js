@@ -1,4 +1,4 @@
-var GsClient = require('resin-universal-gosquared');
+var GsClient = require('balena-universal-gosquared');
 
 module.exports = function (options) {
 	var debug = options.debug;

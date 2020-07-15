@@ -5,15 +5,14 @@
   "main": "build/balena-event-log.js",
   "dependencies": {
     "analytics-client": "^0.8.0",
-    "lodash": "^4.17.19",
-    "resin-universal-ga": "^1.2.2",
-    "resin-universal-gosquared": "^0.2.0"
+    "balena-universal-ga": "^2.0.1",
+    "balena-universal-gosquared": "^1.0.1",
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "@balena/lint": "^5.1.0",
     "@types/lodash": "^4.14.157",
     "balena-config-karma": "^2.3.1",
-    "base-64": "^0.1.0",
     "browserify": "^14.0.0",
     "chai": "^3.5.0",
     "karma": "^1.7.0",

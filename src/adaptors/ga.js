@@ -1,4 +1,4 @@
-var GaClient = require('resin-universal-ga');
+var GaClient = require('balena-universal-ga');
 
 module.exports = function (options) {
 	var debug = options.debug;
