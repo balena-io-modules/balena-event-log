@@ -1,4 +1,132 @@
 - commits:
+    - subject: Update dependencies
+      hash: 24bd7ed8d63f4f0c79e04069cf0d53d81d77824b
+      body: |
+        Update balena-universal-ga from 1.2.2 to 2.0.1
+        Update balena-universal-gosquared from 0.2.0 to 1.0.1
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Pagan Gazzard
+      nested:
+        - commits:
+            - subject: Fix ga-loader inclusion
+              hash: c2e664c50af611544ee72477ef97254d7407da92
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+          version: balena-universal-ga-2.0.1
+          date: 2020-07-15T19:33:13.269Z
+        - commits:
+            - subject: Add .versionbot/CHANGELOG.yml for nested changelogs
+              hash: 8d8428a5d83d5a757dc52c2ff17c9289d89a1b0a
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+            - subject: Switch to native promises
+              hash: d03a9ec6f4c17cb625f062e892f76e8be702d973
+              body: ''
+              footer:
+                Change-type: major
+                change-type: major
+              author: Pagan Gazzard
+            - subject: Add linting
+              hash: e7b1a5001f3421024d17782b44d09a21005e43a0
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+            - subject: Add type checking
+              hash: 715e1f3a85c00f48a7139cf78cf18ab2a9a631b3
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+            - subject: Rename to balena
+              hash: ae7a154d8062b089f8360b2df8bc8b57fdbf88a7
+              body: ''
+              footer:
+                Change-type: major
+                change-type: major
+              author: Pagan Gazzard
+          version: balena-universal-ga-2.0.0
+          date: 2020-07-15T16:43:16.261Z
+        - version: balena-universal-ga-1.3.0
+          date: '2019-04-10T10:47:44Z'
+          commits:
+            - hash: 740c22954862da110101ce19210b87fa2ab6cd95
+              author: Dimitrios Lytras
+              footers:
+                change-type: minor
+              subject: Move the package to a dedicated repo
+              body: ''
+        - commits:
+            - subject: Fix gs-loader inclusion
+              hash: df389c65a2b642d6dfc773c7c40b0485decc03b5
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+          version: balena-universal-gosquared-1.0.1
+          date: 2020-07-15T19:33:45.941Z
+        - commits:
+            - subject: Add .versionbot/CHANGELOG.yml for nested changelogs
+              hash: e3dc9a5b9e659663afa1deab04c87c5d1637f866
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+            - subject: Switch to native promises
+              hash: aba38b68f52cf5b3af9c3947d7174815085fab94
+              body: ''
+              footer:
+                Change-type: major
+                change-type: major
+              author: Pagan Gazzard
+            - subject: Add linting
+              hash: dda5d5f19c606d89c7ac3c5ab848e11de0f4ed41
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+            - subject: Add type checking
+              hash: 24fddf226fc87c8aa2a59dd065f0fb352c71945c
+              body: ''
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: Pagan Gazzard
+            - subject: Rename to balena
+              hash: 85ccc652f3585a638cb1f304815bbd91dc568e4c
+              body: ''
+              footer:
+                Change-type: major
+                change-type: major
+              author: Pagan Gazzard
+          version: balena-universal-gosquared-1.0.0
+          date: 2020-07-15T16:55:36.280Z
+        - version: balena-universal-gosquared-0.3.0
+          date: '2019-04-16T13:48:11Z'
+          commits:
+            - hash: b02246a4f9cd198da45413705fba43af0a25bff6
+              author: Dimitrios Lytras
+              footers:
+                change-type: minor
+                signed-off-by: Dimitrios Lytras <dimitrios@balena.io>
+              subject: Move the package to a dedicated repo
+              body: ''
+  version: 4.1.0
+  date: 2020-07-15T21:04:45.471Z
+- commits:
     - subject: Add .versionbot/CHANGELOG.yml for nested changelogs
       hash: 04b82b9a50ccbd0856f609232ead6332f527bf2c
       body: ''
