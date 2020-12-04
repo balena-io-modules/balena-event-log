@@ -189,9 +189,9 @@ module.exports = function (options) {
 						deviceId,
 						(err, result) => {
 							if (err) {
-								return reject(err)
+								return reject(err);
 							}
-							resolve(result)
+							resolve(result);
 						},
 					);
 				}).catch(function (err) {
@@ -204,14 +204,16 @@ module.exports = function (options) {
 
 			function runAfterHook(err) {
 				return new Promise(function (resolve) {
-					resolve(hooks.afterCreate.call(
-						_this,
-						err,
-						type,
-						jsonData,
-						applicationId,
-						deviceId,
-					));
+					resolve(
+						hooks.afterCreate.call(
+							_this,
+							err,
+							type,
+							jsonData,
+							applicationId,
+							deviceId,
+						),
+					);
 				}).catch(function (err2) {
 					// discard the hook error
 					if (debug) {
@@ -240,13 +242,13 @@ module.exports = function (options) {
 				})
 				.then(function () {
 					return runAfterHook();
-				})
-				if (callback) {
-					p.then((result) => {
-						callback(null, result);
-					}, callback);
-				}
-				return p;
+				});
+			if (callback) {
+				p.then((result) => {
+					callback(null, result);
+				}, callback);
+			}
+			return p;
 		},
 		// These functions are only available for use in the browser
 		getDistinctId: function (callback) {

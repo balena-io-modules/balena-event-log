@@ -58,6 +58,25 @@ function createAnalyticsBackendMock(options, times) {
 	return aggregateMock(mocks)
 }
 
+function validateGaData (data, event, user) {
+	return (
+		data &&
+		data.t === 'event' &&
+		data.tid === GA_ID &&
+		data.ec === GA_SITE &&
+		data.el === SYSTEM &&
+		(!event || data.ea === event) &&
+		(!user || data.uid == user.id)
+	)
+}
+
+function validateGaQuery(event, user) {
+	return function (queryObject) {
+		if (!queryObject) return false
+		return validateGaData(queryObject, event, user);
+	}
+}
+
 function validateGaBody(event, user) {
 	return function (bodyString) {
 		var data = bodyString.split('\n')[0]
@@ -65,15 +84,7 @@ function validateGaBody(event, user) {
 
 		try {
 			data = querystring.parse(data)
-			return (
-					data &&
-					data.t === 'event' &&
-					data.tid === GA_ID &&
-					data.ec === GA_SITE &&
-					data.el === SYSTEM &&
-					(!event || data.ea === event) &&
-					(!user || data.uid == user.id)
-			)
+			return validateGaData(data, event, user);
 		} catch (e) {
 			return false
 		}
@@ -94,6 +105,16 @@ function createGaMock(options, times) {
 		var browserOpts = _.clone(options)
 		browserOpts.endpoint = '/r' + options.endpoint
 		acc.push(mock.create(browserOpts))
+
+		// On the latest vendor ga client always sends the first
+		// request on `/j/collect` and all the data are on the
+		// query string instead of the body
+		var initialRequestOpts = _.clone(options)
+		initialRequestOpts.endpoint = '/j' + options.endpoint
+		delete initialRequestOpts.filterBody
+		initialRequestOpts.filterQuery = validateGaQuery(options.event, options.user)
+		acc.push(mock.create(initialRequestOpts))
+
 		return acc
 	}, [])
 
