@@ -1,4 +1,23 @@
 - commits:
+    - subject: Update balena-config-karma to fix balenaCI tests
+      hash: eeb716b3c2df6ef79468c7c4b1d848291286315c
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+      nested: []
+    - subject: 'test: Update GA mock checks for the latest client behavior'
+      hash: 139f8708e83cf10aa172c1b3698c8a0bf26337a7
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+      nested: []
+  version: 4.1.1
+  date: 2020-12-04T18:37:57.036Z
+- commits:
     - subject: Update dependencies
       hash: 24bd7ed8d63f4f0c79e04069cf0d53d81d77824b
       body: |
