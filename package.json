@@ -12,11 +12,11 @@
   "devDependencies": {
     "@balena/lint": "^5.1.0",
     "@types/lodash": "^4.14.157",
-    "balena-config-karma": "^2.3.1",
+    "balena-config-karma": "^3.0.0",
     "browserify": "^14.0.0",
     "chai": "^3.5.0",
-    "karma": "^1.7.0",
-    "mocha": "^3.5.0",
+    "karma": "^3.1.4",
+    "mocha": "^3.5.3",
     "querystring": "^0.2.0",
     "resin-universal-http-mock": "^1.0.1",
     "typescript": "^3.9.6"
