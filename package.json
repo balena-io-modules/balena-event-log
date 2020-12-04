@@ -3,6 +3,10 @@
   "version": "4.1.1",
   "description": "Balena events logging util",
   "main": "build/balena-event-log.js",
+  "files": [
+    "build/",
+    "typings/"
+  ],
   "dependencies": {
     "analytics-client": "^0.8.0",
     "balena-universal-ga": "^2.0.1",
