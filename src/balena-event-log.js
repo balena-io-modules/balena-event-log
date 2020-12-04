@@ -176,8 +176,13 @@ module.exports = function (options) {
 			this.userId = null;
 			return runForAllAdaptors('logout', [], callback);
 		},
-		create: function (type, jsonData, applicationId, deviceId, callback) {
+		create: function (type, jsonData, context, callback) {
 			var _this = this;
+
+			if (!context) {
+				// the hooks might be manipulating this, so give it a value
+				context = {};
+			}
 
 			function runBeforeHook() {
 				return new Promise(function (resolve, reject) {
@@ -185,8 +190,7 @@ module.exports = function (options) {
 						_this,
 						type,
 						jsonData,
-						applicationId,
-						deviceId,
+						context,
 						(err, result) => {
 							if (err) {
 								return reject(err);
@@ -204,16 +208,7 @@ module.exports = function (options) {
 
 			function runAfterHook(err) {
 				return new Promise(function (resolve) {
-					resolve(
-						hooks.afterCreate.call(
-							_this,
-							err,
-							type,
-							jsonData,
-							applicationId,
-							deviceId,
-						),
-					);
+					resolve(hooks.afterCreate.call(_this, err, type, jsonData, context));
 				}).catch(function (err2) {
 					// discard the hook error
 					if (debug) {
@@ -228,8 +223,7 @@ module.exports = function (options) {
 						_this.prefix,
 						type,
 						{
-							applicationId: applicationId,
-							deviceId: deviceId,
+							...context,
 							jsonData: jsonData,
 						},
 					]);
@@ -263,12 +257,11 @@ module.exports = function (options) {
 		var events = EVENTS[base];
 		var obj = (eventLog[base] = {});
 		events.forEach(function (event) {
-			obj[event] = function (jsonData, applicationId, deviceId) {
+			obj[event] = function (jsonData, context) {
 				return eventLog.create(
 					startCase(base + ' ' + event),
 					jsonData,
-					applicationId,
-					deviceId,
+					context,
 				);
 			};
 		});
