@@ -1,4 +1,51 @@
 - commits:
+    - subject: '*BREAKING*: Stop actively supporting node versions below v10'
+      hash: f7bba07ae98461f9b3b87355efc46daeac6eebb6
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+      author: Thodoris Greasidis
+      nested: []
+    - subject: Include typings
+      hash: c1b9a971586a53f5fb6e47dcfddc3687f09cf670
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+      nested: []
+    - subject: Use a context object instead of tail id arguments
+      hash: ad95de8f61f093c687289054d6f7dfc4473727b6
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+      nested: []
+    - subject: Bump minimum supported TypeScript version to 4.1
+      hash: a7cc2d7aeb2b46abc6fdfed438b87038d51060c7
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+      author: Thodoris Greasidis
+      nested: []
+    - subject: Limit the published files
+      hash: 17aa95e4e41614abaca0b9967d91032b28d9d1ab
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+      author: Thodoris Greasidis
+      nested: []
+  version: 5.0.0
+  date: 2020-12-04T19:04:19.403Z
+- commits:
     - subject: Update balena-config-karma to fix balenaCI tests
       hash: eeb716b3c2df6ef79468c7c4b1d848291286315c
       body: ''
