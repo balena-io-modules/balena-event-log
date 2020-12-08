@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add GH CODEOWNERS to the repo
+      hash: a911ebc169e54bb0c95321bb29d3a8e9c26f3cc2
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+      nested: []
+  version: 5.0.2
+  date: 2020-12-08T15:19:19.924Z
+- commits:
     - subject: Add missing types entry in pakcage.json
       hash: a76b06ca624e5d087ea3e291f06a0b22370138c7
       body: ''
