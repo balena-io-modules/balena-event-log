@@ -3,6 +3,7 @@
   "version": "5.0.0",
   "description": "Balena events logging util",
   "main": "build/balena-event-log.js",
+  "types": "typings/balena-event-log.d.ts",
   "files": [
     "build/",
     "typings/"
