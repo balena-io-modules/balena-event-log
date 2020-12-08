@@ -104,6 +104,7 @@ var EVENTS = {
 // TODO: Completely replace the members namespace (which in the orgs era is ambiguous)
 // with applicationMember once the analytics team has a good event migration approach.
 var ALIASSED_EVENT_NAMESPACES = {
+	invite: 'applicationInvite',
 	members: 'applicationMember',
 };
 
