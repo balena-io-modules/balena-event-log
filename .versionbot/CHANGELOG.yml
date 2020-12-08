@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add missing types entry in pakcage.json
+      hash: a76b06ca624e5d087ea3e291f06a0b22370138c7
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+      nested: []
+  version: 5.0.1
+  date: 2020-12-08T11:25:29.566Z
+- commits:
     - subject: '*BREAKING*: Stop actively supporting node versions below v10'
       hash: f7bba07ae98461f9b3b87355efc46daeac6eebb6
       body: ''
