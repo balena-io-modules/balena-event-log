@@ -14,6 +14,12 @@ var EVENTS = {
 	],
 	apiKey: ['create', 'edit', 'delete'],
 	publicKey: ['create', 'delete'],
+	organization: ['create', 'edit', 'delete'],
+	organizationMember: ['add', 'edit', 'delete'],
+	organizationInvite: ['addInviteOpen', 'create', 'delete', 'accept'],
+	team: ['create', 'edit', 'delete'],
+	teamMember: ['add', 'edit', 'delete'],
+	teamApplication: ['add', 'edit', 'delete'],
 	application: [
 		'create',
 		'open',

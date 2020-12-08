@@ -23,6 +23,19 @@ declare namespace BalenaEventLog {
 		delete: TrackFunction;
 	}
 
+	interface IHaveAddEditDelete {
+		add: TrackFunction;
+		edit: TrackFunction;
+		delete: TrackFunction;
+	}
+
+	interface Invite {
+		addInviteOpen: TrackFunction;
+		create: TrackFunction;
+		delete: TrackFunction;
+		accept: TrackFunction;
+	}
+
 	interface BalenaEventLog {
 		userId: number | null;
 
@@ -72,6 +85,12 @@ declare namespace BalenaEventLog {
 			create: TrackFunction;
 			delete: TrackFunction;
 		};
+		organization: IHaveCreateEditDelete;
+		organizationMember: IHaveAddEditDelete;
+		organizationInvite: Invite;
+		team: IHaveCreateEditDelete;
+		teamMember: IHaveAddEditDelete;
+		teamApplication: IHaveAddEditDelete;
 		application: {
 			create: TrackFunction;
 			open: TrackFunction;
@@ -169,12 +188,7 @@ declare namespace BalenaEventLog {
 		navigation: {
 			click: TrackFunction;
 		};
-		invite: {
-			addInviteOpen: TrackFunction;
-			create: TrackFunction;
-			delete: TrackFunction;
-			accept: TrackFunction;
-		};
+		invite: Invite;
 	}
 
 	type BalenaEventLogConstructor = (options: object) => BalenaEventLog;
