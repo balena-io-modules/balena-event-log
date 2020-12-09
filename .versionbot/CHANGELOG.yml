@@ -1,4 +1,18 @@
 - commits:
+    - subject: Add organization team and member main events
+      hash: 29d07fb67492ca3db9a3a8fd816b7a1597474f57
+      body: |
+        add organization team and member main events
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Andrea Rosci <andrear@balena.io>
+        signed-off-by: Andrea Rosci <andrear@balena.io>
+      author: JSReds
+      nested: []
+  version: 5.1.0
+  date: 2020-12-09T17:42:19.350Z
+- commits:
     - subject: Add GH CODEOWNERS to the repo
       hash: a911ebc169e54bb0c95321bb29d3a8e9c26f3cc2
       body: ''
