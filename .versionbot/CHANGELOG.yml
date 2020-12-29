@@ -1,4 +1,27 @@
 - commits:
+    - subject: Deprecate invite events in favor of applicationInvite alias
+      hash: 2bb1e9b80a15ddad3f082d8a9a529889bd2d4fd6
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+      nested: []
+    - subject: Deprecate members events in favor of applicationMember alias
+      hash: 1bb423c8bf479c32f57ffe3526274ecf3c5c42e2
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        See: >-
+          https://www.flowdock.com/app/rulemotion/r-thefunnel/threads/6C2TuFBrTaf1krKgqph0gEq4ewr
+        see: >-
+          https://www.flowdock.com/app/rulemotion/r-thefunnel/threads/6C2TuFBrTaf1krKgqph0gEq4ewr
+      author: Thodoris Greasidis
+      nested: []
+  version: 5.1.1
+  date: 2020-12-29T20:04:50.441Z
+- commits:
     - subject: Add organization team and member main events
       hash: 29d07fb67492ca3db9a3a8fd816b7a1597474f57
       body: |
