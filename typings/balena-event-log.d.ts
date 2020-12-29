@@ -108,6 +108,8 @@ declare namespace BalenaEventLog {
 			delete: TrackFunction;
 			pinToRelease: TrackFunction;
 		};
+		applicationMember: IHaveCreateEditDelete;
+		applicationInvite: Invite;
 		applicationTag: IHaveCreateEditDelete & {
 			set: TrackFunction;
 		};
@@ -172,6 +174,7 @@ declare namespace BalenaEventLog {
 		releaseTag: IHaveCreateEditDelete & {
 			set: TrackFunction;
 		};
+		/** @deprecated Use applicationMember */
 		members: IHaveCreateEditDelete;
 		billing: {
 			paymentInfoUpdate: TrackFunction;
@@ -188,6 +191,7 @@ declare namespace BalenaEventLog {
 		navigation: {
 			click: TrackFunction;
 		};
+		/** @deprecated Use applicationInvite */
 		invite: Invite;
 	}
 

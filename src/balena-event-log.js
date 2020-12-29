@@ -101,6 +101,13 @@ var EVENTS = {
 	invite: ['addInviteOpen', 'create', 'delete', 'accept'],
 };
 
+// TODO: Completely replace the members namespace (which in the orgs era is ambiguous)
+// with applicationMember once the analytics team has a good event migration approach.
+var ALIASSED_EVENT_NAMESPACES = {
+	invite: 'applicationInvite',
+	members: 'applicationMember',
+};
+
 var DEFAULT_HOOKS = {
 	beforeCreate: function (
 		_type,
@@ -271,6 +278,10 @@ module.exports = function (options) {
 				);
 			};
 		});
+		var aliasedNamespace = ALIASSED_EVENT_NAMESPACES[base];
+		if (aliasedNamespace) {
+			eventLog[aliasedNamespace] = eventLog[base];
+		}
 	});
 
 	return eventLog;
