@@ -1,6 +1,6 @@
 {
   "name": "@balena/event-log",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "Balena events logging util",
   "main": "build/balena-event-log.js",
   "types": "typings/balena-event-log.d.ts",

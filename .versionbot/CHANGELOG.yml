@@ -1,4 +1,15 @@
 - commits:
+    - subject: Delete .github directory
+      hash: 76a9e0701b1079337dc22d0a3e68390f66162cec
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: dfunckt
+      nested: []
+  version: 5.1.2
+  date: 2021-06-30T15:42:52.176Z
+- commits:
     - subject: Deprecate invite events in favor of applicationInvite alias
       hash: 2bb1e9b80a15ddad3f082d8a9a529889bd2d4fd6
       body: ''
