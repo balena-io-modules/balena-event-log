@@ -1,4 +1,20 @@
 - commits:
+    - subject: Drop gosquared support
+      hash: c9f32e24fb65754b2bd9c4949ad7372990591247
+      body: |
+        Discussed in arch call 2021-07-27
+      footer:
+        Change-type: major
+        change-type: major
+        See: 'https://jel.ly.fish/2e150293-6f4e-40e5-9286-d5bba0428f0d'
+        see: 'https://jel.ly.fish/2e150293-6f4e-40e5-9286-d5bba0428f0d'
+        Signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+        signed-off-by: Thodoris Greasidis <thodoris@balena.io>
+      author: Thodoris Greasidis
+      nested: []
+  version: 6.0.0
+  date: 2021-07-27T14:32:04.485Z
+- commits:
     - subject: Delete .github directory
       hash: 76a9e0701b1079337dc22d0a3e68390f66162cec
       body: ''
