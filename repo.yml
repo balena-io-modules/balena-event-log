@@ -2,5 +2,3 @@ type: 'node'
 upstream:
   - repo: 'balena-universal-ga'
     url: 'https://github.com/balena-io-modules/balena-universal-ga'
-  - repo: 'balena-universal-gosquared'
-    url: 'https://github.com/balena-io-modules/balena-universal-gosquared'
