@@ -20,9 +20,6 @@ var SYSTEM = 'TEST'
 var BALENA_DATA_ENDPOINT = 'data.balena-staging.com'
 var GA_ID = 'UA-123456-0'
 var GA_SITE = 'balena-dev.com'
-var GOSQUARED_ID = 'GSN-575655-Q'
-var GOSQUARED_API_KEY = '12345'
-var GOSQUARED_HOST = 'https://api.gosquared.com'
 var GA_HOST = 'https://www.google-analytics.com'
 
 var FAKE_USER = {
@@ -117,40 +114,6 @@ function createGaMock(options, times) {
 
 		return acc
 	}, [])
-
-	return aggregateMock(mocks)
-}
-
-function validateGsQuery(queryString) {
-	return (
-			queryString.site_token === GOSQUARED_ID &&
-			queryString.api_key === GOSQUARED_API_KEY
-	)
-}
-
-function validateGsBody(event, user) {
-	return function (body) {
-		return (
-				(!event || body.event.name === '[' + SYSTEM + '] ' + event) &&
-				(!user || body.person_id == user.id)
-		)
-	}
-}
-
-function createGsMock(options, times) {
-	times = times || 1
-
-	_.defaults(options, {
-		host: GOSQUARED_HOST,
-		method: 'POST',
-		filterQuery: validateGsQuery,
-		filterBody: validateGsBody(options.event, options.user),
-		response: '1'
-	})
-
-	var mocks = _.range(times).map(function () {
-		return mock.create(options)
-	})
 
 	return aggregateMock(mocks)
 }
@@ -506,224 +469,17 @@ describe('BalenaEventLog', function () {
 		})
 	})
 
-	describe('gosquared track', function () {
-		var endpoint = '/tracking/v1/event'
-		var eventLog
-
-		afterEach(function () {
-			return eventLog.end()
-		})
-
-		it('should make basic request', function (done) {
-			var mockedRequest = createGsMock({
-				endpoint: endpoint
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gosquaredId: GOSQUARED_ID,
-				gosquaredApiKey: GOSQUARED_API_KEY,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('gosquared error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-
-					if (!IS_BROWSER) {
-						expect(mockedRequest.isDone()).to.be.ok
-						done()
-					} else {
-						// TODO: mock browser tests.
-						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
-						done()
-					}
-				}
-			})
-
-			eventLog.start().then(function () {
-				eventLog.create(FAKE_EVENT)
-			})
-		})
-
-		it('should track event with user login', function (done) {
-			var mockedRequest = createGsMock({
-				endpoint: endpoint,
-				user: FAKE_USER,
-				event: FAKE_EVENT
-			})
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gosquaredId: GOSQUARED_ID,
-				gosquaredApiKey: GOSQUARED_API_KEY,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('gosquared error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-
-					if (!IS_BROWSER) {
-						expect(mockedRequest.isDone()).to.be.ok
-						done()
-					} else {
-						// TODO: mock browser tests.
-						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
-						done()
-					}
-				}
-			})
-
-			eventLog.start(FAKE_USER).then(function () {
-				eventLog.create(FAKE_EVENT)
-			})
-		})
-
-		it('should track event with anon user', function (done) {
-			var mockedRequest = createGsMock({
-				endpoint: endpoint,
-				user: {
-					id: undefined
-				},
-				event: FAKE_EVENT
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gosquaredId: GOSQUARED_ID,
-				gosquaredApiKey: GOSQUARED_API_KEY,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('gosquared error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-
-					if (!IS_BROWSER) {
-						expect(mockedRequest.isDone()).to.be.ok
-						done()
-					} else {
-						// TODO: mock browser tests.
-						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
-						done()
-					}
-				}
-			})
-
-			eventLog.start().then(function () {
-				eventLog.create(FAKE_EVENT)
-			})
-		})
-
-		it('should have semantic methods like device.rename', function (done) {
-			var mockedRequest = createGsMock({
-				endpoint: endpoint,
-				event: 'Device Rename'
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gosquaredId: GOSQUARED_ID,
-				gosquaredApiKey: GOSQUARED_API_KEY,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('gosquared error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal('Device Rename')
-
-					if (!IS_BROWSER) {
-						expect(mockedRequest.isDone()).to.be.ok
-						done()
-					} else {
-						// TODO: mock browser tests.
-						// see: https://github.com/balena-io-modules/resin-analytics/pull/14
-						done()
-					}
-				}
-			})
-
-			eventLog.start(FAKE_USER).then(function () {
-				eventLog.device.rename()
-			})
-		})
-
-		it('should track event with anonLogin and allow login later', function (done) {
-			var mockedRequest = createGsMock({
-				endpoint: endpoint,
-				user: {
-					id: undefined
-				},
-				event: FAKE_EVENT
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gosquaredId: GOSQUARED_ID,
-				gosquaredApiKey: GOSQUARED_API_KEY,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('gosquared error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-				}
-			})
-
-			eventLog.start().then(function () {
-				return eventLog.create(FAKE_EVENT)
-			})
-					.then(function () {
-						if (!IS_BROWSER) {
-							expect(mockedRequest.isDone()).to.be.ok
-						}
-
-						mockedRequest = createGsMock({
-							endpoint: endpoint,
-							user: FAKE_USER,
-							event: FAKE_EVENT
-						})
-
-						return eventLog.start(FAKE_USER)
-					})
-					.then(function () {
-						return eventLog.create(FAKE_EVENT)
-					})
-					.then(function () {
-						if (!IS_BROWSER) {
-							expect(mockedRequest.isDone()).to.be.ok
-						}
-						done()
-					})
-					.catch(function (err) {
-						console.error(err)
-					})
-		})
-	})
-
 	describe('All platforms', function () {
 		it('getDistinctId', async () => {
 			const eventLog = BalenaEventLog({
 				analyticsClient,
 				gaId: GA_ID,
 				gaSite: GA_SITE,
-				gosquaredId: GOSQUARED_ID,
-				gosquaredApiKey: GOSQUARED_API_KEY,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
 			})
 			const id = await eventLog.getDistinctId()
-			expect(id).to.have.length(3)
+			expect(id).to.have.length(2)
 		})
 	})
 })

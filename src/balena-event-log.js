@@ -126,7 +126,6 @@ var DEFAULT_HOOKS = {
 var ADAPTORS = [
 	require('./adaptors/ga'),
 	require('./adaptors/analytics-client'),
-	require('./adaptors/gosquared'),
 ];
 
 module.exports = function (options) {
