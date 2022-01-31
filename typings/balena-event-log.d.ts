@@ -191,6 +191,9 @@ declare namespace BalenaEventLog {
 		navigation: {
 			click: TrackFunction;
 		};
+		changelog: {
+			click: TrackFunction;
+		};
 		/** @deprecated Use applicationInvite */
 		invite: Invite;
 	}
