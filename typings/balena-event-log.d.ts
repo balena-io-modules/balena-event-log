@@ -108,6 +108,9 @@ declare namespace BalenaEventLog {
 			delete: TrackFunction;
 			pinToRelease: TrackFunction;
 		};
+		block: {
+			imageReferenceCopy: TrackFunction;
+		}
 		applicationMember: IHaveCreateEditDelete;
 		applicationInvite: Invite;
 		applicationTag: IHaveCreateEditDelete & {
