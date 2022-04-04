@@ -1,4 +1,18 @@
 - commits:
+    - subject: Add tracking for copying Block image references
+      hash: e9adc772a98122c0649fad5ab11abff4764fba39
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Matthew Yarmolinsky <matthew-timothy@balena.io>
+        signed-off-by: Matthew Yarmolinsky <matthew-timothy@balena.io>
+      author: Matthew Yarmolinsky
+      nested: []
+  version: 6.2.0
+  title: "'Add tracking for copying Block image references'"
+  date: 2022-04-04T12:37:08.507Z
+- commits:
     - subject: Add Changelog click event
       hash: 435cdcbb96c242e839b054f2d7ba9410f4d53c58
       body: ""
