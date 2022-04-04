@@ -37,6 +37,7 @@ var EVENTS = {
 		'delete',
 		'pinToRelease',
 	],
+	block: ['imageReferenceCopy'],
 	applicationTag: ['set', 'create', 'edit', 'delete'],
 	applicationMembers: ['create', 'edit', 'delete'],
 	configVariable: ['create', 'edit', 'delete'],
