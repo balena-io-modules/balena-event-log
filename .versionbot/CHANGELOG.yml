@@ -1,4 +1,16 @@
 - commits:
+    - subject: Add event for actions and settings operation clicks
+      hash: 076eebbe24ef12a43e6cb58797da8f9cbda16fc5
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: myarmolinsky
+      nested: []
+  version: 6.3.0
+  title: "'Add event for actions and settings operation clicks'"
+  date: 2022-10-31T13:04:14.819Z
+- commits:
     - subject: Add tracking for copying Block image references
       hash: e9adc772a98122c0649fad5ab11abff4764fba39
       body: ""
