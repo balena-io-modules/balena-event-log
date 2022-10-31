@@ -98,6 +98,7 @@ var EVENTS = {
 	page: ['visit'],
 	navigation: ['click'],
 	changelog: ['click'],
+	actionsSettingsOperations: ['click'],
 	members: ['create', 'edit', 'delete', 'invite'],
 	deployToBalena: ['open', 'cancel'],
 	invite: ['addInviteOpen', 'create', 'delete', 'accept'],
