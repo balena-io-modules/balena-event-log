@@ -1,4 +1,15 @@
 - commits:
+    - subject: Replace balenaCI with flowzone
+      hash: a9b2b0fd6d31a1ba60080260d1163eb7adfc7fd0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Otávio Jacobi
+  version: 6.2.1
+  title: ""
+  date: 2022-11-03T19:18:44.562Z
+- commits:
     - subject: Add tracking for copying Block image references
       hash: e9adc772a98122c0649fad5ab11abff4764fba39
       body: ""
