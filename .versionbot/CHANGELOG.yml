@@ -1,4 +1,18 @@
 - commits:
+    - subject: Bump analytics-client to version 2
+      hash: 41acca7213119fc087cccc71538a7c6234a0ce14
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Otavio Jacobi <otavio.jacobi@balena.io>
+        signed-off-by: Otavio Jacobi <otavio.jacobi@balena.io>
+      author: Otávio Jacobi
+      nested: []
+  version: 6.2.1
+  title: "'Bump analytics-client to version 2'"
+  date: 2022-11-03T11:54:33.694Z
+- commits:
     - subject: Add tracking for copying Block image references
       hash: e9adc772a98122c0649fad5ab11abff4764fba39
       body: ""
