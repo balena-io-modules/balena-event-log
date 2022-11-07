@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add event for actions and settings operation clicks
+      hash: bb516ed92d2549c73c2a452d831d97f0afbd6894
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: myarmolinsky
+  version: 6.3.0
+  title: ""
+  date: 2022-11-07T17:37:07.586Z
+- commits:
     - subject: Bump analytics-client to version 2
       hash: 88ad5618865f6ffca0099403867ca7b982438a4d
       body: ""
