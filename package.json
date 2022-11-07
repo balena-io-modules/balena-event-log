@@ -1,6 +1,6 @@
 {
   "name": "@balena/event-log",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "description": "Balena events logging util",
   "main": "build/balena-event-log.js",
   "types": "typings/balena-event-log.d.ts",
@@ -47,6 +47,6 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/balena-io-modules/balena-event-log",
   "versionist": {
-    "publishedAt": "2022-11-03T19:18:44.744Z"
+    "publishedAt": "2022-11-07T14:38:12.114Z"
   }
 }

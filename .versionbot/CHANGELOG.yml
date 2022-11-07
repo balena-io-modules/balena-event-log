@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump analytics-client to version 2
+      hash: 88ad5618865f6ffca0099403867ca7b982438a4d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Otavio Jacobi <otavio.jacobi@balena.io>
+        signed-off-by: Otavio Jacobi <otavio.jacobi@balena.io>
+      author: Otávio Jacobi
+  version: 6.2.2
+  title: ""
+  date: 2022-11-07T14:38:11.918Z
+- commits:
     - subject: Replace balenaCI with flowzone
       hash: a9b2b0fd6d31a1ba60080260d1163eb7adfc7fd0
       body: ""
