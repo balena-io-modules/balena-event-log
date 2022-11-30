@@ -15,8 +15,6 @@ var EventLog = require('@balena/event-log')
 
 var eventLogger = EventLog({
 	debug: true,
-	gaSite: 'balena-cloud.com',
-	gaId: GA_ID,
 	prefix: 'UI, CLI, etc.',
 	// Hooks:
 	beforeCreate: function (type, jsonData, applicationId, deviceId, callback) {
@@ -47,7 +45,6 @@ eventLoger.user.login()
 
 * `prefix` - subsystem name like UI or CLI, acts as events names prefix
 * `[debug = false]` — will print some warnings
-* `[gaSite = null]`, `[gaSite = null]` - if set events will be reported to GA
 
 ### Hooks:
 
