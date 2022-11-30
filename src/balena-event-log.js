@@ -126,10 +126,7 @@ var DEFAULT_HOOKS = {
 	},
 };
 
-var ADAPTORS = [
-	require('./adaptors/ga'),
-	require('./adaptors/analytics-client'),
-];
+var ADAPTORS = [require('./adaptors/analytics-client')];
 
 module.exports = function (options) {
 	options = options || {};

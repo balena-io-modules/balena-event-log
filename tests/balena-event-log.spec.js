@@ -1,26 +1,16 @@
 var Analytics = require('analytics-client')
 var _ = require('lodash')
 var expect = require('chai').expect
-var querystring = require('querystring')
 var mock = require('resin-universal-http-mock')
-
-var IS_BROWSER = typeof window !== 'undefined'
 
 // NB: set to true to get some extra reporting
 var EXTRA_DEBUG = false
-
-if (IS_BROWSER && EXTRA_DEBUG) {
-	window.GA_CUSTOM_LIB_URL = 'https://www.google-analytics.com/analytics_debug.js'
-}
 
 var BalenaEventLog = require('..')
 
 var projectId = 'balena-test'
 var SYSTEM = 'TEST'
 var BALENA_DATA_ENDPOINT = 'data.balena-staging.com'
-var GA_ID = 'UA-123456-0'
-var GA_SITE = 'balena-dev.com'
-var GA_HOST = 'https://www.google-analytics.com'
 
 var FAKE_USER = {
 	username: 'fake',
@@ -51,69 +41,6 @@ function createAnalyticsBackendMock(options, times) {
 	var mocks = _.range(times).map(function () {
 		return mock.create(options)
 	})
-
-	return aggregateMock(mocks)
-}
-
-function validateGaData (data, event, user) {
-	return (
-		data &&
-		data.t === 'event' &&
-		data.tid === GA_ID &&
-		data.ec === GA_SITE &&
-		data.el === SYSTEM &&
-		(!event || data.ea === event) &&
-		(!user || data.uid == user.id)
-	)
-}
-
-function validateGaQuery(event, user) {
-	return function (queryObject) {
-		if (!queryObject) return false
-		return validateGaData(queryObject, event, user);
-	}
-}
-
-function validateGaBody(event, user) {
-	return function (bodyString) {
-		var data = bodyString.split('\n')[0]
-		if (!data) return false
-
-		try {
-			data = querystring.parse(data)
-			return validateGaData(data, event, user);
-		} catch (e) {
-			return false
-		}
-	}
-}
-
-function createGaMock(options, times) {
-	times = times || 1
-
-	_.defaults(options, {
-		host: GA_HOST,
-		method: 'POST',
-		filterBody: validateGaBody(options.event, options.user)
-	})
-
-	var mocks = _.range(times).reduce(function (acc) {
-		acc.push(mock.create(options))
-		var browserOpts = _.clone(options)
-		browserOpts.endpoint = '/r' + options.endpoint
-		acc.push(mock.create(browserOpts))
-
-		// On the latest vendor ga client always sends the first
-		// request on `/j/collect` and all the data are on the
-		// query string instead of the body
-		var initialRequestOpts = _.clone(options)
-		initialRequestOpts.endpoint = '/j' + options.endpoint
-		delete initialRequestOpts.filterBody
-		initialRequestOpts.filterQuery = validateGaQuery(options.event, options.user)
-		acc.push(mock.create(initialRequestOpts))
-
-		return acc
-	}, [])
 
 	return aggregateMock(mocks)
 }
@@ -230,7 +157,7 @@ describe('BalenaEventLog', function () {
 				debug: EXTRA_DEBUG,
 				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
 					if (err) {
-						console.error('Mixpanel error:', err)
+						console.error('Analytics error:', err)
 					}
 					expect(!err).to.be.ok
 					expect(type).to.be.equal(FAKE_EVENT)
@@ -302,184 +229,15 @@ describe('BalenaEventLog', function () {
 		})
 	})
 
-	describe('GA track', function () {
-		// NB: GA tests **must** be run with `debug: true`, it influences some the cookiDomain and transport params of GA tracking
-		var eventLog
-
-		afterEach(function () {
-			return eventLog.end()
-		})
-
-		it('should make basic request', function (done) {
-			var mockedRequest = createGaMock({
-				endpoint: '/collect'
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gaId: GA_ID,
-				gaSite: GA_SITE,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('GA error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-					expect(mockedRequest.isDone()).to.be.ok
-					done()
-				}
-			})
-
-			eventLog.start().then(function () {
-				eventLog.create(FAKE_EVENT)
-			})
-		})
-
-		it('should track event with user login', function (done) {
-			var mockedRequest = createGaMock({
-				endpoint: '/collect',
-				user: FAKE_USER
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gaId: GA_ID,
-				gaSite: GA_SITE,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('GA error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-					expect(mockedRequest.isDone()).to.be.ok
-					done()
-				}
-			})
-
-			eventLog.start(FAKE_USER).then(function () {
-				eventLog.create(FAKE_EVENT)
-			})
-		})
-
-		it('should track event with anon user', function (done) {
-			var mockedRequest = createGaMock({
-				endpoint: '/collect',
-				user: {
-					id: undefined
-				}
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gaId: GA_ID,
-				gaSite: GA_SITE,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('GA error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal('Device Rename')
-					expect(mockedRequest.isDone()).to.be.ok
-					done()
-				}
-			})
-
-			eventLog.start().then(function () {
-				eventLog.device.rename()
-			})
-		})
-
-		it('should have semantic methods like device.rename', function (done) {
-			var mockedRequest = createGaMock({
-				endpoint: '/collect',
-				event: 'Device Rename'
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gaId: GA_ID,
-				gaSite: GA_SITE,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('GA error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal('Device Rename')
-					expect(mockedRequest.isDone()).to.be.ok
-					done()
-				}
-			})
-
-			eventLog.start(FAKE_USER).then(function () {
-				eventLog.device.rename()
-			})
-		})
-
-		it('should track event with anonLogin and allow login later', function (done) {
-			var mockedRequest = createGaMock({
-				endpoint: '/collect',
-				user: {
-					id: undefined
-				},
-				event: FAKE_EVENT
-			})
-
-			eventLog = BalenaEventLog({
-				analyticsClient,
-				gaId: GA_ID,
-				gaSite: GA_SITE,
-				prefix: SYSTEM,
-				debug: true,
-				afterCreate: function (err, type, jsonData, applicationId, deviceId) {
-					if (err) {
-						console.error('GA error:', err)
-					}
-					expect(!err).to.be.ok
-					expect(type).to.be.equal(FAKE_EVENT)
-				}
-			})
-
-			eventLog.start().then(function () {
-				return eventLog.create(FAKE_EVENT)
-			})
-					.then(function () {
-						expect(mockedRequest.isDone()).to.be.ok
-						mockedRequest = createGaMock({
-							endpoint: '/collect',
-							user: FAKE_USER,
-							event: FAKE_EVENT
-						})
-						return eventLog.start(FAKE_USER)
-					})
-					.then(function () {
-						return eventLog.create(FAKE_EVENT)
-					})
-					.then(function () {
-						expect(mockedRequest.isDone()).to.be.ok
-						done()
-					})
-		})
-	})
-
 	describe('All platforms', function () {
 		it('getDistinctId', async () => {
 			const eventLog = BalenaEventLog({
 				analyticsClient,
-				gaId: GA_ID,
-				gaSite: GA_SITE,
 				prefix: SYSTEM,
 				debug: EXTRA_DEBUG,
 			})
 			const id = await eventLog.getDistinctId()
-			expect(id).to.have.length(2)
+			expect(id).to.have.length(1)
 		})
 	})
 })
