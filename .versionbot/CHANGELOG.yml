@@ -1,4 +1,14 @@
 - commits:
+    - subject: Stops reporting to google analytics
+      hash: f2e3832a63e0cae22bf47524d57653c0afbd1c6a
+      body: ""
+      footer:
+        change-type: patch
+      author: Otávio Jacobi
+  version: 6.3.1
+  title: ""
+  date: 2022-11-30T19:50:27.457Z
+- commits:
     - subject: Add event for actions and settings operation clicks
       hash: bb516ed92d2549c73c2a452d831d97f0afbd6894
       body: ""
