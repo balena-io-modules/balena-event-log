@@ -188,6 +188,12 @@ declare namespace BalenaEventLog {
 			open: TrackFunction;
 			cancel: TrackFunction;
 		};
+		applicationDeviceType: {
+			select: TrackFunction;
+		};
+		applicationName: {
+			set: TrackFunction;
+		};
 		page: {
 			visit: TrackFunction;
 		};
