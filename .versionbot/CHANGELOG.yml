@@ -1,4 +1,15 @@
 - commits:
+    - subject: Adds missing types
+      hash: b8ec4ed48b96e8e4bca9c3bdb18c0e9c2e103bac
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Otávio Jacobi
+  version: 6.5.1
+  title: ""
+  date: 2023-03-06T18:32:57.903Z
+- commits:
     - subject: Adds createNewClicked and addNewClicked events
       hash: f195e566d39be865fac972f0258267bcb32b2582
       body: ""
