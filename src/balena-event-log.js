@@ -44,6 +44,7 @@ var EVENTS = {
 	environmentVariable: ['create', 'edit', 'delete'],
 	serviceVariable: ['create', 'edit', 'delete'],
 	device: [
+		'addNewClicked',
 		'open',
 		'rename',
 		'terminalOpen',
@@ -76,6 +77,7 @@ var EVENTS = {
 		'supervisorStateOpen',
 	],
 	release: [
+		'createNewClicked',
 		'addReleaseOpen',
 		'instructionsCopy',
 		'installLinkClick',
