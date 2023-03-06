@@ -120,6 +120,7 @@ declare namespace BalenaEventLog {
 		environmentVariable: IHaveCreateEditDelete;
 		serviceVariable: IHaveCreateEditDelete;
 		device: {
+			addNewClicked: TrackFunction;
 			open: TrackFunction;
 			rename: TrackFunction;
 			terminalOpen: TrackFunction;
@@ -152,6 +153,7 @@ declare namespace BalenaEventLog {
 			supervisorStateOpen: TrackFunction;
 		};
 		release: {
+			createNewClicked: TrackFunction;
 			addReleaseOpen: TrackFunction;
 			instructionsCopy: TrackFunction;
 			installLinkClick: TrackFunction;
