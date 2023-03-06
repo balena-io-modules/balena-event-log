@@ -1,4 +1,15 @@
 - commits:
+    - subject: Adds createNewClicked and addNewClicked events
+      hash: f195e566d39be865fac972f0258267bcb32b2582
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otávio Jacobi
+  version: 6.5.0
+  title: ""
+  date: 2023-03-06T17:58:44.586Z
+- commits:
     - subject: Adds applicationName.set and applicationDeviceType.select events
       hash: b806188de33fe0483cc2448f36cc80e858d94ff7
       body: ""
