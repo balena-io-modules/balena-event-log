@@ -207,7 +207,10 @@ declare namespace BalenaEventLog {
 		};
 		actionsSettingsOperations: {
 			click: TrackFunction;
-		}
+		};
+		creditsRunwayCalculator: {
+			purchaseCredits: TrackFunction;
+		};
 		/** @deprecated Use applicationInvite */
 		invite: Invite;
 	}

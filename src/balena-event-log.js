@@ -101,6 +101,7 @@ var EVENTS = {
 	navigation: ['click'],
 	changelog: ['click'],
 	actionsSettingsOperations: ['click'],
+	creditsRunwayCalculator: ['purchaseCredits'],
 	members: ['create', 'edit', 'delete', 'invite'],
 	deployToBalena: ['open', 'cancel'],
 	invite: ['addInviteOpen', 'create', 'delete', 'accept'],
