@@ -96,6 +96,7 @@ declare namespace BalenaEventLog {
 			open: TrackFunction;
 			osDownload: TrackFunction;
 			osConfigDownload: TrackFunction;
+			flash: TrackFunction;
 			publicUrlEnable: TrackFunction;
 			publicUrlDisable: TrackFunction;
 			restart: TrackFunction;
@@ -106,6 +107,7 @@ declare namespace BalenaEventLog {
 			shutdown: TrackFunction;
 			applicationTypeChange: TrackFunction;
 			delete: TrackFunction;
+			addDeviceModalChange: TrackFunction;
 			pinToRelease: TrackFunction;
 		};
 		block: {

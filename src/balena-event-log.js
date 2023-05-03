@@ -23,6 +23,7 @@ var EVENTS = {
 	application: [
 		'create',
 		'open',
+		'flash',
 		'osDownload',
 		'osConfigDownload',
 		'publicUrlEnable',
@@ -35,6 +36,7 @@ var EVENTS = {
 		'shutdown',
 		'applicationTypeChange',
 		'delete',
+		'addDeviceModalChange',
 		'pinToRelease',
 	],
 	block: ['imageReferenceCopy'],
