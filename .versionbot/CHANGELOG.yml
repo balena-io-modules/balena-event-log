@@ -1,4 +1,15 @@
 - commits:
+    - subject: Adds flash application event
+      hash: d36d067f7e070e00fa86625f7d43cd9f1acd12be
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otávio Jacobi
+  version: 6.7.0
+  title: ""
+  date: 2023-05-03T19:36:12.812Z
+- commits:
     - subject: Add tracking for Credits Runway Calculator
       hash: 575924c018f15686aa5ef861dcb0c79799ba4926
       body: ""
