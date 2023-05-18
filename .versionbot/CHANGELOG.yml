@@ -1,4 +1,18 @@
 - commits:
+    - subject: Add tracking for suggested application name click event
+      hash: a6bda59a51055477d28d90b7248241094b7209a6
+      body: |
+        Adds `suggestedNameClick` event for `applicationName`
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Rahul Thakoor <rahul@balena.io>
+        signed-off-by: Rahul Thakoor <rahul@balena.io>
+      author: Rahul Thakoor
+  version: 6.8.0
+  title: ""
+  date: 2023-05-18T10:31:46.956Z
+- commits:
     - subject: Adds flash application event
       hash: d36d067f7e070e00fa86625f7d43cd9f1acd12be
       body: ""
