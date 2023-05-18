@@ -108,7 +108,7 @@ var EVENTS = {
 	deployToBalena: ['open', 'cancel'],
 	invite: ['addInviteOpen', 'create', 'delete', 'accept'],
 	applicationDeviceType: ['select'],
-	applicationName: ['set'],
+	applicationName: ['set','suggestedNameClick'],
 };
 
 // TODO: Completely replace the members namespace (which in the orgs era is ambiguous)

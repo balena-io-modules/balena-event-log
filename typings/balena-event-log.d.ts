@@ -197,6 +197,7 @@ declare namespace BalenaEventLog {
 		};
 		applicationName: {
 			set: TrackFunction;
+			suggestedNameClick: TrackFunction;
 		};
 		page: {
 			visit: TrackFunction;
