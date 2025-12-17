@@ -1,5 +1,4 @@
-var pick = require('lodash/pick');
-var startCase = require('lodash/startCase');
+var { pick, startCase } = require('es-toolkit');
 
 var EVENTS = {
 	user: [

@@ -1,5 +1,4 @@
 var Analytics = require('analytics-client')
-var _ = require('lodash')
 var expect = require('chai').expect
 var mock = require('resin-universal-http-mock')
 
@@ -23,7 +22,7 @@ var FAKE_EVENT = 'x'
 function aggregateMock(mocks) {
 	return {
 		isDone: function () {
-			return _.some(mocks, function (mock) {
+			return mocks.some((mock) => {
 				return mock.isDone()
 			})
 		}
@@ -32,15 +31,14 @@ function aggregateMock(mocks) {
 
 function createAnalyticsBackendMock(options, times) {
 	times = times || 1
-	_.defaults(options, {
+	const optionsWithDefaults = {
 		host: `https://${BALENA_DATA_ENDPOINT}`,
 		method: 'POST',
-		response: 'success'
-	})
+		response: 'success',
+		...options
+	}
 
-	var mocks = _.range(times).map(function () {
-		return mock.create(options)
-	})
+	var mocks = (new Array(times)).fill(mock.create(optionsWithDefaults))
 
 	return aggregateMock(mocks)
 }

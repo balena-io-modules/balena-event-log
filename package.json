@@ -13,13 +13,12 @@
   },
   "dependencies": {
     "analytics-client": "^2.0.0",
-    "lodash": "^4.17.19"
+    "es-toolkit": "^1.43.0"
   },
   "devDependencies": {
     "@balena/lint": "^5.1.0",
     "@types/chai": "^4.3.3",
     "@types/chai-as-promised": "^7.1.5",
-    "@types/lodash": "^4.14.157",
     "@types/mocha": "^9.1.1",
     "balena-config-karma": "^4.0.0",
     "browserify": "^14.0.0",
