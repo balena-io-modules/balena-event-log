@@ -14,6 +14,7 @@
 		"allowJs": true,
 		"checkJs": true,
 		"moduleResolution": "node",
+		"skipLibCheck": true
 	},
 	"include": [
 		"src/*"
