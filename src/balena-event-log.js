@@ -1,5 +1,4 @@
-var pick = require('lodash/pick');
-var startCase = require('lodash/startCase');
+var { pick, startCase } = require('es-toolkit');
 
 var EVENTS = {
 	user: [
@@ -108,7 +107,7 @@ var EVENTS = {
 	deployToBalena: ['open', 'cancel'],
 	invite: ['addInviteOpen', 'create', 'delete', 'accept'],
 	applicationDeviceType: ['select'],
-	applicationName: ['set','suggestedNameClick'],
+	applicationName: ['set', 'suggestedNameClick'],
 };
 
 // TODO: Completely replace the members namespace (which in the orgs era is ambiguous)

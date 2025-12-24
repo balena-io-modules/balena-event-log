@@ -1,7 +1,7 @@
 var Analytics = require('analytics-client')
-var _ = require('lodash')
 var expect = require('chai').expect
-var mock = require('resin-universal-http-mock')
+var sinon = require('sinon')
+var nise = require('nise')
 
 // NB: set to true to get some extra reporting
 var EXTRA_DEBUG = false
@@ -20,31 +20,6 @@ var FAKE_USER = {
 }
 var FAKE_EVENT = 'x'
 
-function aggregateMock(mocks) {
-	return {
-		isDone: function () {
-			return _.some(mocks, function (mock) {
-				return mock.isDone()
-			})
-		}
-	}
-}
-
-function createAnalyticsBackendMock(options, times) {
-	times = times || 1
-	_.defaults(options, {
-		host: `https://${BALENA_DATA_ENDPOINT}`,
-		method: 'POST',
-		response: 'success'
-	})
-
-	var mocks = _.range(times).map(function () {
-		return mock.create(options)
-	})
-
-	return aggregateMock(mocks)
-}
-
 describe('BalenaEventLog', function () {
 
 	let analyticsClient
@@ -52,16 +27,16 @@ describe('BalenaEventLog', function () {
 	let lastUserId = null
 	let lastUserProperties = null
 	let regenerateCalled = false
-
-	before(mock.init)
-	afterEach(mock.reset)
-	after(mock.teardown)
+	let server
 
 	beforeEach(function () {
+		server = nise.fakeServer.create()
+		server.autoRespond = true
+		server.respondWith('POST', `https://${BALENA_DATA_ENDPOINT}`, [
+			200, { 'Content-Type': 'text/plain' }, 'success'
+		])
+
 		// On init, analytics client sends an identify call.
-		createAnalyticsBackendMock({
-			endpoint: '/amplitude',
-		}, 1)
 
 		analyticsClient = Analytics.createClient({
 			projectName: projectId,
@@ -77,7 +52,12 @@ describe('BalenaEventLog', function () {
 		analyticsClient.track = (eventType, props) => trackedEvents.push({eventType, props})
 		analyticsClient.setUserId = (userId) => { lastUserId = userId }
 		analyticsClient.setUserProperties = (props) => { lastUserProperties = props }
+		analyticsClient.regenerateDeviceId = () => { regenerateCalled = true }
 	});
+
+	afterEach(function () {
+		server.restore()
+	})
 
 	describe('Analytics client track', function () {
 		let eventLog
@@ -238,6 +218,51 @@ describe('BalenaEventLog', function () {
 			})
 			const id = await eventLog.getDistinctId()
 			expect(id).to.have.length(1)
+		})
+
+		it('should call setUserId and regenerateDeviceId on logout', async () => {
+			const eventLog = BalenaEventLog({
+				analyticsClient,
+				prefix: SYSTEM,
+			})
+			// Simulate login first to set userId
+			await eventLog.start({ username: 'user', id: 1 })
+			expect(lastUserId).to.equal('user')
+	
+			await eventLog.end()
+			expect(lastUserId).to.be.null
+			expect(regenerateCalled).to.be.true
+		})
+	
+		it('should call setUserId on identify', async () => {
+			const eventLog = BalenaEventLog({
+				analyticsClient,
+				prefix: SYSTEM,
+			})
+			
+			await eventLog.identify({ analyticsClient: 'new-id' })
+			expect(lastUserId).to.equal('new-id')
+		})
+	
+		it('should expose all event namespaces', () => {
+			const eventLog = BalenaEventLog({
+				analyticsClient,
+				prefix: SYSTEM,
+			})
+			const namespaces = [
+				'user', 'apiKey', 'publicKey', 'organization', 'organizationMember',
+				'organizationInvite', 'team', 'teamMember', 'teamApplication',
+				'application', 'block', 'applicationTag', 'applicationMembers',
+				'configVariable', 'environmentVariable', 'serviceVariable', 'device',
+				'release', 'deviceConfigVariable', 'deviceEnvironmentVariable',
+				'deviceServiceVariable', 'deviceTag', 'releaseTag', 'billing',
+				'onboarding', 'gettingStartedGuide', 'page', 'navigation', 'changelog',
+				'actionsSettingsOperations', 'creditsRunwayCalculator', 'members',
+				'deployToBalena', 'invite', 'applicationDeviceType', 'applicationName'
+			]
+			namespaces.forEach(ns => {
+				expect(eventLog).to.have.property(ns)
+			})
 		})
 	})
 })

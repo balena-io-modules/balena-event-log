@@ -1,5 +1,5 @@
 const { createWebTracker } = require('analytics-client');
-const pick = require('lodash/pick');
+const { pick } = require('es-toolkit');
 
 const ONE_TIME_USER_FIELDS = ['$created'];
 
