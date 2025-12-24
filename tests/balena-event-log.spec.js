@@ -22,7 +22,7 @@ var FAKE_EVENT = 'x'
 function aggregateMock(mocks) {
 	return {
 		isDone: function () {
-			return mocks.some((mock) => {
+			return mocks.some(function (mock) {
 				return mock.isDone()
 			})
 		}
@@ -31,14 +31,15 @@ function aggregateMock(mocks) {
 
 function createAnalyticsBackendMock(options, times) {
 	times = times || 1
-	const optionsWithDefaults = {
+	options = Object.assign({
 		host: `https://${BALENA_DATA_ENDPOINT}`,
 		method: 'POST',
-		response: 'success',
-		...options
-	}
+		response: 'success'
+	}, options)
 
-	var mocks = (new Array(times)).fill(mock.create(optionsWithDefaults))
+	var mocks = Array.from({ length: times }).map(function () {
+		return mock.create(options)
+	})
 
 	return aggregateMock(mocks)
 }
